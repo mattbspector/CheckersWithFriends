@@ -1,0 +1,31 @@
+.main {text-align:center;}
+
+.checkerBoard {
+  border-collapse: collapse;
+  border: thin black solid;
+  margin: 0px auto;
+}
+.cell, .piece {
+  width: 30px;
+  height: 30px;
+}
+
+.black {background: black;}
+.activeCell {background: green;}
+.activeCell.hovered {background: blue;}
+
+.piece {border-radius: 15px;}
+.piece.black {background: black;}
+.piece.red {background: red;}
+
+.piece .kingCenter {
+  display:none;
+  padding:4px;}
+.piece.black .kingCenter {color: white;}
+.piece.red .kingCenter {color: black;}
+.piece.king .kingCenter {display:inline-block;}
+
+#draggableHelper {
+  opacity: .7;
+  background: orange;
+}
