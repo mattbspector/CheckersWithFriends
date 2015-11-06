@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div class='main' >
-		  <div>Checkers</div>
+		  <h1 id="turn_display"></h1>
 		  <div class='victory'></div>
 		  <table class='checkerBoard'></table>
 		</div>
@@ -16,7 +16,9 @@
 			$(window).ready(function() {
 			  //Setup the board and choose the starting color
 			  setup('red');
+              $("#turn_display").html("Gray's Turn");
 			});
+            
 
 			function setup(startingColor){
 			  //Lay down the checkerboard
@@ -113,10 +115,14 @@
 			    if (ui.draggable.hasClass('red')){
 			      $('.piece.red').draggable('disable');
 			      $('.piece.black').draggable('enable');
+                  $("#turn_display").html("Gray's Turn");
+
 			    }
 			    else{
 			      $('.piece.black').draggable('disable');
 			      $('.piece.red').draggable('enable');
+                  $("#turn_display").html("Red's Turn");
+
 			    }
 			  }
 			  else {
