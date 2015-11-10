@@ -1,0 +1,36 @@
+.overlay-main{
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 172, 237, 0.9);
+	display: none;
+
+
+}
+.buttons{
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 15%;
+	width: 30%;
+}
+
+
+.btn{
+	font-size: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 20px !important;
+}
+
+.main-header{
+	font-size: 50px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.btn-grey:hover{
+	background-color: #95a5a6;
+}
