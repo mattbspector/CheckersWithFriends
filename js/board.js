@@ -1,7 +1,6 @@
 //DEFINE NEW_BOARD_STRING = "101000301000303010100030100030301010003010003030101000301000303"  
 var boardString = "";
-var turn = "red";
-
+var turn = "black";
 $(window).ready(function() {
       var pubnub = PUBNUB({
         subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
@@ -15,7 +14,7 @@ $(window).ready(function() {
          boardString = JSON.stringify(m[0][0]);
           //Setup the board and choose the starting color
           setup('red');
-          $("#turn_display").html("Gray's Turn");
+          $("#turn_display").html("Red's Turn");
      },
      count: 1, // 100 is the default
      reverse: false // false is the default
@@ -167,7 +166,7 @@ $(window).ready(function() {
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
             var middleRow = (oldrow + newrow)/2;
             var middleCol = (oldcol + newcol)/2;
-            var middleIndex = (4 * middleRow) + middleCol;
+            var middleIndex = (8 * middleRow) + middleCol;
             boardJson["board"] = boardJson["board"].replaceAt(middleIndex, '0');
         }
         
@@ -207,7 +206,7 @@ $(window).ready(function() {
           $('.piece.black').draggable('enable');
           ///
           $("#turn_display").html("Gray's Turn");
-            turn = "black";
+          turn = "red";
 
         }
         else{
@@ -215,7 +214,7 @@ $(window).ready(function() {
           $('.piece.red').draggable('enable');
           ///
           $("#turn_display").html("Red's Turn");
-            turn = "red";
+          turn = "black";
 
         }
       }
