@@ -1,14 +1,50 @@
 //DEFINE NEW_BOARD_STRING = "101000301000303010100030100030301010003010003030101000301000303"  
-var boardString = '{"board" : "1010003001000303101000300100030310100030010003031010003001000303"}';
+var boardString = "";
+var turn = "red";
+
 $(window).ready(function() {
-      
+      var pubnub = PUBNUB({
+        subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+        publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+      });
     
-      //Query History and set Board String
+    //Query History and set Board String
+    pubnub.history({
+     channel: 'general_channel',
+     callback: function(m){
+         boardString = JSON.stringify(m[0][0]);
+          //Setup the board and choose the starting color
+          setup('red');
+          $("#turn_display").html("Gray's Turn");
+     },
+     count: 1, // 100 is the default
+     reverse: false // false is the default
+    });
     
+     pubnub.subscribe({
+        channel: 'general_channel',
+        message: function(m){
+            console.log(m);
+            boardString = JSON.stringify(m);
+            
+            if(turn == "red"){
+                $( ".checkerBoard" ).children().remove();
+                setup('red');
+                $("#turn_display").html("Gray's Turn");
+            }
+            else{
+                $( ".checkerBoard" ).children().remove();
+                setup('black');
+                $("#turn_display").html("Red's Turn");
+            }
+        },
+        error: function (error) {
+            // Handle error here
+            console.log(JSON.stringify(error));
+        }
+    });
     
-      //Setup the board and choose the starting color
-      setup('red');
-      $("#turn_display").html("Gray's Turn");
+     
     });
 
     
@@ -25,8 +61,9 @@ $(window).ready(function() {
           $('.checkerBoard tr[row='+i+']').append('<td class="cell '+color+'" row="'+i+'" col="'+j+'"></td>');
         }
       }
+      console.log(boardString);
       var boardJson = JSON.parse(boardString);
-                    var board = boardJson["board"];
+      var board = boardJson["board"];
 
       //Create the pieces for a new game
         //"101000301000303010100030100030301010003010003030101000301000303"  
@@ -99,39 +136,51 @@ $(window).ready(function() {
         drop: handlePieceDrop
       });
     }
+    String.prototype.replaceAt=function(index, character) {
+        return this.substr(0, index) + character + this.substr(index+character.length);
+    }
 
     function changJsonString(piece, oldcol, oldrow, newcol, newrow){
-        var newindex = (4 * newrow) + newcol;
-        var oldindex = (4 * oldrow) + oldcol;
+        var newindex = (8 * newrow) + newcol;
+        
+        var oldindex = (8 * oldrow) + oldcol;
+        
         var boardJson = JSON.parse(boardString);
-        boardJson["board"][oldindex] = 0;
+        console.log(boardJson["board"][oldindex]);
+        boardJson["board"] = boardJson["board"].replaceAt(oldindex, '0');
         if(piece.hasClass('red')){
             if(piece.hasClass('king')){
-                boardJson["board"][newindex] = 4;
-
+                boardJson["board"] = boardJson["board"].replaceAt(newindex, '4');
             }
             else{
-                boardJson["board"][newindex] = 3;
-
+                boardJson["board"] = boardJson["board"].replaceAt(newindex, '3');
             }
         }
         else{
             if(piece.hasClass('king')){
-                boardJson["board"][newindex] = 2;
-
+                 boardJson["board"] = boardJson["board"].replaceAt(newindex, '2');
             }
             else{
-                boardJson["board"][newindex] = 1;
+                 boardJson["board"] = boardJson["board"].replaceAt(newindex, '1');
             }
         }
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
             var middleRow = (oldrow + newrow)/2;
             var middleCol = (oldcol + newcol)/2;
             var middleIndex = (4 * middleRow) + middleCol;
-            boardJson["board"][middleIndex] = 0;
+            boardJson["board"] = boardJson["board"].replaceAt(middleIndex, '0');
         }
         
         //Publish boardJSON
+        var pubnub = PUBNUB({
+            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+        });
+        pubnub.publish({
+            channel: 'general_channel',        
+            message: boardJson,
+            callback : function(m){console.log(m)}
+        });
     }
         
     function handlePieceDrop(event, ui){
@@ -158,6 +207,7 @@ $(window).ready(function() {
           $('.piece.black').draggable('enable');
           ///
           $("#turn_display").html("Gray's Turn");
+            turn = "black";
 
         }
         else{
@@ -165,6 +215,7 @@ $(window).ready(function() {
           $('.piece.red').draggable('enable');
           ///
           $("#turn_display").html("Red's Turn");
+            turn = "red";
 
         }
       }
