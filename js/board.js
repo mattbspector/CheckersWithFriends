@@ -14,7 +14,7 @@ $(window).ready(function() {
          boardString = JSON.stringify(m[0][0]);
           //Setup the board and choose the starting color
           setup('red');
-          $("#turn_display").html("Red's Turn");
+          $("#turn_display").html("Gray's Turn");
      },
      count: 1, // 100 is the default
      reverse: false // false is the default
