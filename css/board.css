@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  background: url("http://webdesignfan.com/wp-content/uploads/2009/10/11_excellent_free_high_quality_wood_texture_sets.jpg");
 }
 .main {text-align:center;}
 
@@ -7,15 +8,18 @@ body{
   border-collapse: collapse;
   border: thin black solid;
   margin: 0px auto;
+  
 }
 .cell{
   width: 3em;
   height: 3em;
+  border: thin white solid;
 }
 .piece {
   margin-left: .25em;
   width: 2.5em;
   height: 2.5em;
+  border: 2px solid white;
 }
 
 .black {background: black;}

@@ -242,6 +242,19 @@ $(window).ready(function() {
 
     function myHelper( event ) {return '<div id="draggableHelper" class="piece"></div>';}
 
+    function reset(){
+        //Publish boardJSON
+        var pubnub = PUBNUB({
+            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+        });
+        pubnub.publish({
+            channel: 'general_channel',        
+            message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black"},
+            callback : function(m){console.log(m)}
+        });
+    }
+
     function victory(color){
       //Publish : boardString = '{"board" : "101000301000303010100030100030301010003010003030101000301000303"}'
       if (color == 'black'){$('.victory').html('Black Winnnnnnssssss!!!!!');}
