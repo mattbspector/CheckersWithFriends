@@ -1,4 +1,5 @@
-//DEFINE NEW_BOARD_STRING = "101000301000303010100030100030301010003010003030101000301000303"  
+//DEFINE NEW_BOARD_STRING = "1010003001000303101000300100030310100030010003031010003001000303"  
+//{"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"red"}
 var boardString = "";
 var turn = "black";
 $(window).ready(function() {
@@ -27,7 +28,6 @@ $(window).ready(function() {
             boardString = JSON.stringify(m);
             console.log(boardString);
             if(m["turn"] == "black"){
-                console.log("in here");
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("Gray's Turn");
@@ -61,12 +61,11 @@ $(window).ready(function() {
           $('.checkerBoard tr[row='+i+']').append('<td class="cell '+color+'" row="'+i+'" col="'+j+'"></td>');
         }
       }
-      console.log(boardString);
       var boardJson = JSON.parse(boardString);
       var board = boardJson["board"];
-
+      console.log(board);
       //Create the pieces for a new game
-        //"101000301000303010100030100030301010003010003030101000301000303"  
+        //"1010003001000303101000300100030310100030010003031010003001000303"  
       for (var i=0;i<8;i++){
         for (var j=0;j<8;j++){
             if(board[(8 * i) + j] == 1){
