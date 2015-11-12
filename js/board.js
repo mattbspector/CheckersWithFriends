@@ -23,10 +23,11 @@ $(window).ready(function() {
      pubnub.subscribe({
         channel: 'general_channel',
         message: function(m){
-            console.log(m);
+            console.log(m["turn"]);
             boardString = JSON.stringify(m);
-            
-            if(turn == "red"){
+            console.log(boardString);
+            if(m["turn"] == "black"){
+                console.log("in here");
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("Gray's Turn");
@@ -145,7 +146,6 @@ $(window).ready(function() {
         var oldindex = (8 * oldrow) + oldcol;
         
         var boardJson = JSON.parse(boardString);
-        console.log(boardJson["board"][oldindex]);
         boardJson["board"] = boardJson["board"].replaceAt(oldindex, '0');
         if(piece.hasClass('red')){
             if(piece.hasClass('king')){
@@ -154,6 +154,7 @@ $(window).ready(function() {
             else{
                 boardJson["board"] = boardJson["board"].replaceAt(newindex, '3');
             }
+            boardJson["turn"] = "black";
         }
         else{
             if(piece.hasClass('king')){
@@ -162,6 +163,8 @@ $(window).ready(function() {
             else{
                  boardJson["board"] = boardJson["board"].replaceAt(newindex, '1');
             }
+            boardJson["turn"] = "red";
+
         }
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
             var middleRow = (oldrow + newrow)/2;
