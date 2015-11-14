@@ -4,6 +4,16 @@ body{
 
 .main {text-align:center;}
 
+h1 {
+  font-weight: 800;
+  font-size: 3.4em;
+  margin-bottom: 0.2em;
+  color: black;
+  font-family: Sans-Serif;
+
+}
+
+
 .checkerBoard {
   border-collapse: collapse;
   border: thin black solid;
@@ -11,31 +21,38 @@ body{
   
 }
 .cell{
-  width: 3em;
-  height: 3em;
+  width: 5vw;
+  height: 5vw;
+  min-height: 3vw;
+  min-width: 3vw;
   border: thin white solid;
 }
+
 .piece {
   margin-left: .25em;
-  width: 2.5em;
-  height: 2.5em;
-  border: 2px solid white;
+  width: 4.5vw;
+  height: 4.5vw;
+  border: .2vw solid white;
 }
 
 .black {background: black;}
 .activeCell {background: green;}
 .activeCell.hovered {background: blue;}
 
-.piece {border-radius: 1.5em;}
+.piece {border-radius: 3vw;}
 .piece.black {background: #787a7d;}
 .piece.red {background: #c31b3b;}
 
 .piece .kingCenter {
   display:none;
-  padding:4px;}
+  padding:1vw;
+}
 .piece.black .kingCenter {color: white;}
 .piece.red .kingCenter {color: black;}
-.piece.king .kingCenter {display:inline-block;}
+.piece.king .kingCenter {
+    display:inline-block;
+    font-size: 1em;
+}
 
 #draggableHelper {
   opacity: .7;

@@ -141,7 +141,7 @@ $(window).ready(function() {
         return this.substr(0, index) + character + this.substr(index+character.length);
     }
 
-    function changJsonString(piece, oldcol, oldrow, newcol, newrow){
+    function changJsonString(piece, oldcol, oldrow, newcol, newrow, activecells){
         var newindex = (8 * newrow) + newcol;
         
         var oldindex = (8 * oldrow) + oldcol;
@@ -172,6 +172,15 @@ $(window).ready(function() {
             var middleCol = (oldcol + newcol)/2;
             var middleIndex = (8 * middleRow) + middleCol;
             boardJson["board"] = boardJson["board"].replaceAt(middleIndex, '0');
+            
+            //Handling Double Jumps
+            if(piece.hasClass('red') && activecells){
+                boardJson["turn"] = "red";
+            }
+            else if(activecells){
+                boardJson["turn"] = "black";
+            }
+
         }
         
         //Publish boardJSON
@@ -199,7 +208,8 @@ $(window).ready(function() {
       if (ui.draggable.hasClass('red')){color = 'red';}
 
       if (Math.abs(oldRow-newRow) == 2 || Math.abs(oldCol-newCol) == 2){
-        jumpPiece(ui.draggable,color,oldRow,oldCol,newRow,newCol);}
+        jumpPiece(ui.draggable,color,oldRow,oldCol,newRow,newCol);
+      }
 
       if (color == 'black' && newCol == 7){ui.draggable.addClass('king');}
       else if (color == 'red' && newCol == 0){ui.draggable.addClass('king');}
@@ -208,28 +218,25 @@ $(window).ready(function() {
         if (ui.draggable.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          
-          ///
           $("#turn_display").html("Gray's Turn");
           turn = "red";
-
+            
         }
         else{
           $('.piece.black').draggable('disable');
           $('.piece.red').draggable('enable');
-        
-          ///
           $("#turn_display").html("Red's Turn");
           turn = "black";
 
         }
+        changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow, 0);
       }
       else {
           $('.piece').draggable('disable');
           ui.draggable.draggable('enable');
+          changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow, 1);
       }
         
-      changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow);
     }
 
     function jumpPiece(piece,color,oldRow,oldCol,newRow,newCol){
@@ -261,8 +268,9 @@ $(window).ready(function() {
 
     function victory(color){
       //Publish : boardString = '{"board" : "101000301000303010100030100030301010003010003030101000301000303"}'
-      if (color == 'black'){$('.victory').html('Black Winnnnnnssssss!!!!!');}
-      else{$('.victory').html('Red Winnnnnnssssss!!!!!');}
-
+      //if (color == 'black'){$('.victory').html('Black Winnnnnnssssss!!!!!');}
+      //else{$('.victory').html('Red Winnnnnnssssss!!!!!');}
+        
       $('.piece').draggable('disable');
+      reset();
     }
