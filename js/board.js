@@ -3,6 +3,7 @@
 var boardString = "";
 var turn = "black";
 $(window).ready(function() {
+
       var pubnub = PUBNUB({
         subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
         publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
@@ -24,9 +25,7 @@ $(window).ready(function() {
      pubnub.subscribe({
         channel: 'general_channel',
         message: function(m){
-            console.log(m["turn"]);
             boardString = JSON.stringify(m);
-            console.log(boardString);
             if(m["turn"] == "black"){
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
@@ -40,16 +39,11 @@ $(window).ready(function() {
         },
         error: function (error) {
             // Handle error here
-            console.log(JSON.stringify(error));
         }
     });
     
      
-    });
-
-    
-    
-    
+    }); 
 
     function setup(startingColor){
       //Lay down the checkerboard
@@ -63,7 +57,6 @@ $(window).ready(function() {
       }
       var boardJson = JSON.parse(boardString);
       var board = boardJson["board"];
-      console.log(board);
       //Create the pieces for a new game
         //"1010003001000303101000300100030310100030010003031010003001000303"  
       for (var i=0;i<8;i++){
@@ -92,7 +85,16 @@ $(window).ready(function() {
           helper: myHelper
         });
 
+
+      if(team == "black"){
+        $('.piece.red').draggable('disable');
+      }
+      else{
+        $('.piece.black').draggable('disable');
+      }
+
       $('.piece.'+startingColor).draggable('disable');
+
     }
 
     function findCells(event, ui){
@@ -180,7 +182,7 @@ $(window).ready(function() {
         pubnub.publish({
             channel: 'general_channel',        
             message: boardJson,
-            callback : function(m){console.log(m)}
+            callback : function(m){}
         });
     }
         
@@ -206,6 +208,7 @@ $(window).ready(function() {
         if (ui.draggable.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
+          
           ///
           $("#turn_display").html("Gray's Turn");
           turn = "red";
@@ -214,6 +217,7 @@ $(window).ready(function() {
         else{
           $('.piece.black').draggable('disable');
           $('.piece.red').draggable('enable');
+        
           ///
           $("#turn_display").html("Red's Turn");
           turn = "black";
@@ -251,7 +255,7 @@ $(window).ready(function() {
         pubnub.publish({
             channel: 'general_channel',        
             message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black"},
-            callback : function(m){console.log(m)}
+            callback : function(m){}
         });
     }
 
