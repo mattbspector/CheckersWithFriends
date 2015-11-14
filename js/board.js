@@ -123,6 +123,8 @@ $(window).ready(function() {
         if (!$('.cell[row='+(row+step)+'][col='+(col+dir)+'] .piece').hasClass(color)){
           if ($('.cell[row='+(row+step*2)+'][col='+(col+dir*2)+'] .piece').length == 0){
             $('.cell[row='+(row+step*2)+'][col='+(col+dir*2)+']').addClass('activeCell');
+              
+              
           }
         }
       }
@@ -170,6 +172,13 @@ $(window).ready(function() {
             var middleCol = (oldcol + newcol)/2;
             var middleIndex = (8 * middleRow) + middleCol;
             boardJson["board"] = boardJson["board"].replaceAt(middleIndex, '0');
+            if(piece.hasClass('red')){
+                boardJson["turn"] = "red";
+            }
+            else{
+                boardJson["turn"] = "black";
+            }
+
         }
         
         //Publish boardJSON
@@ -197,7 +206,8 @@ $(window).ready(function() {
       if (ui.draggable.hasClass('red')){color = 'red';}
 
       if (Math.abs(oldRow-newRow) == 2 || Math.abs(oldCol-newCol) == 2){
-        jumpPiece(ui.draggable,color,oldRow,oldCol,newRow,newCol);}
+        jumpPiece(ui.draggable,color,oldRow,oldCol,newRow,newCol);
+      }
 
       if (color == 'black' && newCol == 7){ui.draggable.addClass('king');}
       else if (color == 'red' && newCol == 0){ui.draggable.addClass('king');}
@@ -206,7 +216,6 @@ $(window).ready(function() {
         if (ui.draggable.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          ///
           $("#turn_display").html("Gray's Turn");
           turn = "red";
 
@@ -214,7 +223,6 @@ $(window).ready(function() {
         else{
           $('.piece.black').draggable('disable');
           $('.piece.red').draggable('enable');
-          ///
           $("#turn_display").html("Red's Turn");
           turn = "black";
 
@@ -257,8 +265,9 @@ $(window).ready(function() {
 
     function victory(color){
       //Publish : boardString = '{"board" : "101000301000303010100030100030301010003010003030101000301000303"}'
-      if (color == 'black'){$('.victory').html('Black Winnnnnnssssss!!!!!');}
-      else{$('.victory').html('Red Winnnnnnssssss!!!!!');}
-
+      //if (color == 'black'){$('.victory').html('Black Winnnnnnssssss!!!!!');}
+      //else{$('.victory').html('Red Winnnnnnssssss!!!!!');}
+        
       $('.piece').draggable('disable');
+      reset();
     }

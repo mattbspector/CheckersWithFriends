@@ -1,8 +1,17 @@
 body{
   margin: 0;
-  background: url("http://webdesignfan.com/wp-content/uploads/2009/10/11_excellent_free_high_quality_wood_texture_sets.jpg");
 }
 .main {text-align:center;}
+
+h1 {
+  font-weight: 800;
+  font-size: 3.4em;
+  margin-bottom: 0.2em;
+  color: black;
+  font-family: Sans-Serif;
+
+}
+
 
 .checkerBoard {
   border-collapse: collapse;
