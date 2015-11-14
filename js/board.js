@@ -123,8 +123,6 @@ $(window).ready(function() {
         if (!$('.cell[row='+(row+step)+'][col='+(col+dir)+'] .piece').hasClass(color)){
           if ($('.cell[row='+(row+step*2)+'][col='+(col+dir*2)+'] .piece').length == 0){
             $('.cell[row='+(row+step*2)+'][col='+(col+dir*2)+']').addClass('activeCell');
-              
-              
           }
         }
       }
@@ -141,7 +139,7 @@ $(window).ready(function() {
         return this.substr(0, index) + character + this.substr(index+character.length);
     }
 
-    function changJsonString(piece, oldcol, oldrow, newcol, newrow){
+    function changJsonString(piece, oldcol, oldrow, newcol, newrow, activecells){
         var newindex = (8 * newrow) + newcol;
         
         var oldindex = (8 * oldrow) + oldcol;
@@ -172,10 +170,12 @@ $(window).ready(function() {
             var middleCol = (oldcol + newcol)/2;
             var middleIndex = (8 * middleRow) + middleCol;
             boardJson["board"] = boardJson["board"].replaceAt(middleIndex, '0');
-            if(piece.hasClass('red')){
+            
+            //Handling Double Jumps
+            if(piece.hasClass('red') && activecells){
                 boardJson["turn"] = "red";
             }
-            else{
+            else if(activecells){
                 boardJson["turn"] = "black";
             }
 
@@ -218,7 +218,7 @@ $(window).ready(function() {
           $('.piece.black').draggable('enable');
           $("#turn_display").html("Gray's Turn");
           turn = "red";
-
+            
         }
         else{
           $('.piece.black').draggable('disable');
@@ -227,13 +227,14 @@ $(window).ready(function() {
           turn = "black";
 
         }
+        changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow, 0);
       }
       else {
           $('.piece').draggable('disable');
           ui.draggable.draggable('enable');
+          changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow, 1);
       }
         
-      changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow);
     }
 
     function jumpPiece(piece,color,oldRow,oldCol,newRow,newCol){
