@@ -22,6 +22,7 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("Grey's Turn");
+                $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
 
             }
@@ -29,6 +30,7 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
+                $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
 
           }
