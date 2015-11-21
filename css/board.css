@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  background-color: #b3dfef;
 }
 
 
@@ -37,6 +38,7 @@ h1 {
 }
 
 .black {background: black;}
+.white{background: white;}
 .activeCell {background: green;}
 .activeCell.hovered {background: blue;}
 
