@@ -18,10 +18,18 @@ $(window).ready(function() {
      channel: 'general_channel',
      callback: function(m){
          boardString = JSON.stringify(m[0][0]);
+         if(m[0][0]["turn"] == "black"){
+                $( ".checkerBoard" ).children().remove();
+                setup('red');
+                $("#turn_display").html("Grey's Turn");
+            }
+          else{
+                $( ".checkerBoard" ).children().remove();
+                setup('black');
+                $("#turn_display").html("Red's Turn");
+          }
           //Setup the board and choose the starting color
-          setup('red');
-          $("#turn_display").html("Grey's Turn");
-     },
+      },
      count: 1, // 100 is the default
      reverse: false // false is the default
     });
