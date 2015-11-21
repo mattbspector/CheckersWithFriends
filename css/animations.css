@@ -13,4 +13,5 @@
 }
 .currentTurn {
     animation: pulse 1s linear infinite;
+    border: 3px #00aced solid;
 }
