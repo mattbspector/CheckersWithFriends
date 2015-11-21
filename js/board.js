@@ -20,7 +20,7 @@ $(window).ready(function() {
          boardString = JSON.stringify(m[0][0]);
           //Setup the board and choose the starting color
           setup('red');
-          $("#turn_display").html("Gray's Turn");
+          $("#turn_display").html("Grey's Turn");
      },
      count: 1, // 100 is the default
      reverse: false // false is the default
@@ -33,7 +33,7 @@ $(window).ready(function() {
             if(m["turn"] == "black"){
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
-                $("#turn_display").html("Gray's Turn");
+                $("#turn_display").html("Grey's Turn");
             }
             else{
                 $( ".checkerBoard" ).children().remove();
@@ -45,7 +45,7 @@ $(window).ready(function() {
             // Handle error here
         }
     });
-    
+
      
     });
  
@@ -223,7 +223,7 @@ $(window).ready(function() {
         if (ui.draggable.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          $("#turn_display").html("Gray's Turn");
+          $("#turn_display").html("Grey's Turn");
           turn = "red";
             
         }
