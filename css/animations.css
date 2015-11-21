@@ -1,0 +1,18 @@
+@keyframes pulse {
+    0% {
+     transform: scale(1, 1);
+    }
+
+    50% {
+     transform: scale(1.1, 1.1);
+    }
+
+    100% {
+    transform: scale(1, 1);
+    }
+}
+.currentTurn {
+    animation: pulse 1s linear infinite;
+    border: 3px #00aced solid;
+    opacity: 1 !important;
+}

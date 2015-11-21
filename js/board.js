@@ -1,51 +1,73 @@
 //DEFINE NEW_BOARD_STRING = "1010003001000303101000300100030310100030010003031010003001000303"  
 //{"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"red"}
 var boardString = "";
+var setup = "";
+var history = "";
+var subscribe = "";
+var pubnub = "";
 var turn = "black";
+var team = "";
 $(window).ready(function() {
-
-      var pubnub = PUBNUB({
-        subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-        publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
-      });
+   pubnub = PUBNUB({
+    subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+  });
     
     //Query History and set Board String
-    pubnub.history({
+    history = pubnub.history({
      channel: 'general_channel',
      callback: function(m){
          boardString = JSON.stringify(m[0][0]);
+         if(m[0][0]["turn"] == "black"){
+                $( ".checkerBoard" ).children().remove();
+                setup('red');
+                $("#turn_display").html("Grey's Turn");
+                $(".piece.black").addClass("currentTurn");
+
+            }
+          else{
+                $( ".checkerBoard" ).children().remove();
+                setup('black');
+                $("#turn_display").html("Red's Turn");
+                $(".piece.red").addClass("currentTurn");
+
+          }
           //Setup the board and choose the starting color
-          setup('red');
-          $("#turn_display").html("Gray's Turn");
-     },
+      },
      count: 1, // 100 is the default
      reverse: false // false is the default
     });
     
-     pubnub.subscribe({
+     subscribe = pubnub.subscribe({
         channel: 'general_channel',
         message: function(m){
             boardString = JSON.stringify(m);
             if(m["turn"] == "black"){
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
-                $("#turn_display").html("Gray's Turn");
+                $("#turn_display").html("Grey's Turn");
+                $(".piece.black").addClass("currentTurn");
+                $(".piece.red").removeClass("currentTurn");
+
             }
             else{
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
+                $(".piece.red").addClass("currentTurn");
+                $(".piece.black").removeClass("currentTurn");
             }
         },
         error: function (error) {
             // Handle error here
         }
     });
-    
-     
-    }); 
 
-    function setup(startingColor){
+     
+    });
+ 
+
+   setup = function setup(startingColor){
       //Lay down the checkerboard
       for (var i=0;i<8;i++){
         $('.checkerBoard').append('<tr row="'+i+'"></tr>');
@@ -89,7 +111,7 @@ $(window).ready(function() {
       if(team == "black"){
         $('.piece.red').draggable('disable');
       }
-      else{
+      else if(team == "red"){
         $('.piece.black').draggable('disable');
       }
 
@@ -218,7 +240,7 @@ $(window).ready(function() {
         if (ui.draggable.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          $("#turn_display").html("Gray's Turn");
+          $("#turn_display").html("Grey's Turn");
           turn = "red";
             
         }
