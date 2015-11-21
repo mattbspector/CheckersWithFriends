@@ -41,8 +41,8 @@ h1 {
 .activeCell.hovered {background: blue;}
 
 .piece {border-radius: 3vw;}
-.piece.black {background: #787a7d;}
-.piece.red {background: #c31b3b;}
+.piece.black {background: #787a7d; opacity: 0.6}
+.piece.red {background: #c31b3b; opacity: 0.6;}
 
 .piece .kingCenter {
   display:none;
