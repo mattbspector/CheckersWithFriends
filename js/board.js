@@ -22,11 +22,15 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("Grey's Turn");
+                $(".piece.black").addClass("currentTurn");
+
             }
           else{
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
+                $(".piece.red").addClass("currentTurn");
+
           }
           //Setup the board and choose the starting color
       },
@@ -42,11 +46,16 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("Grey's Turn");
+                $(".piece.black").addClass("currentTurn");
+                $(".piece.red").removeClass("currentTurn");
+
             }
             else{
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
+                $(".piece.red").addClass("currentTurn");
+                $(".piece.black").removeClass("currentTurn");
             }
         },
         error: function (error) {
