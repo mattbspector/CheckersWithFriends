@@ -16,7 +16,12 @@ $(document).ready(function() {
       				$('header').css("background-color", "#787a7d");
       				$('header').css("font-size", "50px");
       				$('header').css("color", "white");
+
       		}
+      		$("#turn_display").css("display", "");
+      		$(".checkerboard").css("margin", "0px auto");
+
+
 
       });
 });

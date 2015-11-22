@@ -12,14 +12,15 @@ h1 {
   margin-bottom: 0.2em;
   color: black;
   font-family: Sans-Serif;
-
 }
+
+
 
 
 .checkerBoard {
   border-collapse: collapse;
   border: thin black solid;
-  margin: 0px auto;
+  margin: 100px auto;
   
 }
 .cell{
