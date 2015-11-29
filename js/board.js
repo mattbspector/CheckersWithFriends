@@ -30,6 +30,11 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
+                
+                var color = $( this ).css( "background-color" );
+                $( "#result" ).html( "That div is <span style='color:" +
+                    color + ";'>" + color + "</span>." );
+
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
 
