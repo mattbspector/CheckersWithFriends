@@ -4,6 +4,11 @@
   overflow-x: hidden;
   background: #eee;
   min-height: 80vh;
+  max-height: 80vh;
+}
+
+#chatbox{
+  overflow-y: scroll;
 }
 .chat .message {
   display: flex;
@@ -11,6 +16,7 @@
   min-height: 30px;
   height: auto;
   text-align: left;
+  padding-bottom: 10px;
 }
 .chat .message.me img {
   order: 2;
@@ -18,7 +24,7 @@
 }
 .chat .message.me div {
   order: 1;
-  padding: 0 8px 0 0;
+  padding: 0 8px 0 10px;
 }
 .chat .message.me div p {
   float: right;

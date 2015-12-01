@@ -72,16 +72,19 @@ $(document).ready(function()
 function process(e) {
     var code = (e.keyCode ? e.keyCode : e.which);
     if (code == 13) { //Enter keycode
-      
-      var obj = {text:document.getElementById('input').value, MyUuid: uniqueID};
-      var jsonString= JSON.stringify(obj);
-      pubnub.publish({
-          channel: team,        
-          message: obj,
-          callback : function(m){
+     if (!(document.getElementById('input').value == "")) {
+            var obj = {text:document.getElementById('input').value, MyUuid: uniqueID};
+            var jsonString= JSON.stringify(obj);
+            pubnub.publish({
+                channel: team,        
+                message: obj,
+                callback : function(m){
+                  document.getElementById("input").value = "";                   
+                }
+            });
+     }
+     else{
             document.getElementById("input").value = "";                   
-          }
-      });
-      //document.getElementById("input").value = "";                 
+     }; 
     }
 }
