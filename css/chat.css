@@ -22,7 +22,7 @@
 }
 .chat .message.me img {
   order: 2;
-  margin: 0 0 0 3px;
+  margin: 0 5px 0 3px;
 }
 .chat .message.me div {
   order: 1;
