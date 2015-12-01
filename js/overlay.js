@@ -27,20 +27,14 @@ $(document).ready(function()
                   history = pubnub.history({
                        channel: team,
                        callback: function(m){
-                              console.log("history is:");
                               for (var i = 0; i < 100; i++) {
-                                    console.log(m[0][i]);
 
                                     var messageDiv = document.createElement('div');
 
                                     if (m[0][i]["MyUuid"] == uniqueID) {
-                                          console.log("this is me");
                                           messageDiv.className = "message me";
                                     }
                                     else{
-                                          console.log("this is not me");
-                                          console.log(m[0][i]["MyUuid"]);
-                                          console.log(PUBNUB.uuid());
                                           messageDiv.className = "message";
                                     };
 
@@ -67,6 +61,12 @@ $(document).ready(function()
 
                   subscribe = pubnub.subscribe({
                         channel: team,
+                        presence: function(m){
+                              console.log(m["occupancy"]);
+                              var bar = document.getElementById('presenceBar');
+                              bar.innerHTML = "There are " + m["occupancy"] + " memebers on your team";
+
+                        },
                         message: function(m){
                               // <div class="chat">
                               //       <div class="message me">
@@ -78,13 +78,9 @@ $(document).ready(function()
                               var messageDiv = document.createElement('div');
 
                               if (m["MyUuid"] == uniqueID) {
-                                    console.log("this is me");
                                     messageDiv.className = "message me";
                               }
                               else{
-                                    console.log("this is not me");
-                                    console.log(m["MyUuid"]);
-                                    console.log(PUBNUB.uuid());
                                     messageDiv.className = "message";
                               };
 

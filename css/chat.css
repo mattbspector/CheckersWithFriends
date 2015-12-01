@@ -3,8 +3,8 @@
   overflow-y: scroll;
   overflow-x: hidden;
   background: #eee;
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 75vh;
+  max-height: 75vh;
 }
 
 #chatbox{
@@ -92,9 +92,7 @@ body {
   box-sizing: border-box;
 }
 
-.chat {
-  border-radius: 5px;
-}
+
 #device {
   margin: -50px auto 0 auto;
   padding: 20px 20px 40px 20px;
@@ -219,4 +217,11 @@ body {
   float: right;
   width: 25%;
   height: 85vh;
+}
+
+#presenceBar{
+  height: 5vh;
+  background: #eee;
+
+
 }
