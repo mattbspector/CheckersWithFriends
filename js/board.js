@@ -32,11 +32,6 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
-                
-                var color = $( this ).css( "background-color" );
-                $( "#result" ).html( "That div is <span style='color:" +
-                    color + ";'>" + color + "</span>." );
-
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
 
@@ -202,7 +197,8 @@ $(window).ready(function() {
             boardJson["turn"] = "red";
 
         }
-        $(".lefty").append("<div>" + boardJson["board"] + "</div>");
+        console.log(boardJson["board"]);
+        // $(".lefty").append("<div>" + boardJson["board"] + "</div>");
 
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
             var middleRow = (oldrow + newrow)/2;
