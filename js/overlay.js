@@ -24,6 +24,47 @@ $(document).ready(function()
 
       		}
       		$("#turn_display").css("display", "");
+                  history = pubnub.history({
+                       channel: team,
+                       callback: function(m){
+                              console.log("history is:");
+                              for (var i = 0; i < 100; i++) {
+                                    console.log(m[0][i]);
+
+                                    var messageDiv = document.createElement('div');
+
+                                    if (m[0][i]["MyUuid"] == uniqueID) {
+                                          console.log("this is me");
+                                          messageDiv.className = "message me";
+                                    }
+                                    else{
+                                          console.log("this is not me");
+                                          console.log(m[0][i]["MyUuid"]);
+                                          console.log(PUBNUB.uuid());
+                                          messageDiv.className = "message";
+                                    };
+
+                                    var messageImage = document.createElement('img');
+                                    messageImage.src = "http://api.randomuser.me/portraits/med/women/36.jpg";
+                                    messageDiv.appendChild(messageImage);
+
+                                    var innerMessageDiv = document.createElement('div');
+                                    var innerMessageDivP = document.createElement('p');
+                                    innerMessageDivP.innerHTML = m[0][i]["text"];
+
+                                    innerMessageDiv.appendChild(innerMessageDivP);
+                                    messageDiv.appendChild(innerMessageDiv);
+
+                                    var chatBox = document.getElementById('chatbox');
+                                    chatBox.appendChild(messageDiv);
+                              };
+                              
+                        },
+                       count: 100, // 100 is the default
+                       reverse: false // false is the default
+                      });
+
+
                   subscribe = pubnub.subscribe({
                         channel: team,
                         message: function(m){
