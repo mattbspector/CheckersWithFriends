@@ -1,3 +1,5 @@
+@import url("http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica");
+
 .chat {
   display: block;
   overflow-y: scroll;
@@ -63,7 +65,7 @@
   padding: 8px 10px 8px 10px;
   background: #fff;
   word-wrap: break-word;
-  font-family: Monospace;
+  font-family: 'IM Fell DW Pica', serif;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -157,7 +159,7 @@ body {
   line-height: 20px;
   text-align: center;
   font-size: 14px;
-  font-family: arial, sans-serif;
+  font-family: 'IM Fell DW Pica', serif;
   color: #fff;
   border-radius: 5px;
   border-bottom: 2px solid #217dbb;
@@ -190,7 +192,7 @@ body {
 }
 #preview .chat #text {
   color: #fff;
-  font-family: arial, sans-serif;
+  font-family: 'IM Fell DW Pica', serif;
   font-size: 12px;
 }
 @media (max-height: 400px) {
@@ -222,6 +224,7 @@ body {
 #presenceBar{
   height: 5vh;
   background: #eee;
+  border: 1px solid black;
 
 
 }

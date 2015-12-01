@@ -64,7 +64,13 @@ $(document).ready(function()
                         presence: function(m){
                               console.log(m["occupancy"]);
                               var bar = document.getElementById('presenceBar');
-                              bar.innerHTML = "There are " + m["occupancy"] + " memebers on your team";
+                              var icon = document.createElement('i');
+                              icon.className = "fa fa-users";
+                              icon.style.marginLeft = "10px";
+                              icon.style.fontSize = "16px";
+                              bar.innerHTML =  "There are " + m["occupancy"] + " memebers on your team";
+                              bar.className = "logo smallest";
+                              bar.appendChild(icon);
 
                         },
                         message: function(m){

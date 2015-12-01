@@ -14,6 +14,11 @@
   font-size: 1.5em;
 }
 
+.smallest{
+padding-top: 10px;
+  font-size: .75em;
+  letter-spacing: 2px;
+}
 .giga {
   color: #fff8f0;
   -moz-transition: text-shadow 0.3s ease-in-out;
