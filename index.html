@@ -46,8 +46,8 @@
  -->
 
 		<div class = "outterChatBox">
-			<div class="chat">
-			    <div class="message">
+			<div class="chat" id="chatbox">
+			    <!-- <div class="message">
 			      <img src="http://api.randomuser.me/portraits/med/men/66.jpg" />
 			      <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget pretium sapien, et gravida metus.</p></div>
 			    </div>
@@ -77,10 +77,10 @@
 			    <div class="message">
 			      <img src="http://api.randomuser.me/portraits/med/men/66.jpg" />
 			      <div><p>Aliquam gravida semper pharetra.</p></div>
-			    </div>
+			    </div> -->
 			</div>
 
-			<div><input id='input' placeholder='Press Enter To Send Chat' /></div>
+			<textarea id='input' placeholder='Press Enter To Send Chat' onkeypress="process(event, this)"></textarea>
 		</div>
 		
 
