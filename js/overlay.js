@@ -58,7 +58,7 @@ $(document).ready(function()
                                     var chatBox = document.getElementById('chatbox');
                                     chatBox.appendChild(messageDiv);
                               };
-                              
+                              $('#chatbox').animate({"scrollTop": $('#chatbox')[0].scrollHeight}, "fast");
                         },
                        count: 100, // 100 is the default
                        reverse: false // false is the default
@@ -101,6 +101,7 @@ $(document).ready(function()
 
                               var chatBox = document.getElementById('chatbox');
                               chatBox.appendChild(messageDiv);
+                              $('#chatbox').animate({"scrollTop": $('#chatbox')[0].scrollHeight}, "fast");
 
 
                         },
