@@ -216,7 +216,7 @@ $(window).ready(function() {
 
         }
         
-          boardJson["moves"].push(boardJson["board"]);
+          //boardJson["moves"].push(boardJson["board"]);
     
         console.log(boardJson);
         //Publish boardJSON
