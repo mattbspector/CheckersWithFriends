@@ -1,5 +1,6 @@
 $(document).ready(function()
 {
+
       $(".mybtn").click(function()
       {
       		$(".overlay-main").slideUp(1000);
@@ -20,8 +21,6 @@ $(document).ready(function()
       				$('header').css("background-color", "#787a7d");
       				$('header').css("font-size", "50px");
       				$('header').css("color", "white");
-
-
       		}
       		$("#turn_display").css("display", "");
                   history = pubnub.history({
