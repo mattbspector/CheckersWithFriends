@@ -79,6 +79,7 @@ $(window).ready(function() {
           $('.checkerBoard tr[row='+i+']').append('<td class="cell '+color+'" row="'+i+'" col="'+j+'"></td>');
         }
       }
+
       var boardJson = JSON.parse(boardString);
       var board = boardJson["board"];
       //Create the pieces for a new game
@@ -191,6 +192,8 @@ $(window).ready(function() {
             boardJson["turn"] = "red";
 
         }
+        $(".lefty").append("<div>" + boardJson["board"] + "</div>");
+
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
             var middleRow = (oldrow + newrow)/2;
             var middleCol = (oldcol + newcol)/2;
@@ -207,6 +210,9 @@ $(window).ready(function() {
 
         }
         
+          boardJson["moves"].push(boardJson["board"]);
+    
+        console.log(boardJson);
         //Publish boardJSON
         var pubnub = PUBNUB({
             subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
@@ -218,7 +224,9 @@ $(window).ready(function() {
             callback : function(m){}
         });
     }
-        
+    function proposeNewMove(event, ui){
+      
+    }    
     function handlePieceDrop(event, ui){
       var oldRow = parseInt(ui.draggable.parent().attr('row'));
       var oldCol = parseInt(ui.draggable.parent().attr('col'));
@@ -285,7 +293,7 @@ $(window).ready(function() {
         });
         pubnub.publish({
             channel: 'general_channel',        
-            message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black"},
+            message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":[]},
             callback : function(m){}
         });
     }
