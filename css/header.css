@@ -1,0 +1,39 @@
+@import url("http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica");
+
+.logo {
+  font-size: 4.25em;
+  line-height: 1;
+  letter-spacing: 12px;
+  color: rgba(36, 27, 20, 0.86);
+  text-transform: uppercase;
+  font-family: 'IM Fell DW Pica', serif;
+}
+
+
+.smaller{
+  font-size: 1.5em;
+}
+
+.giga {
+  color: #fff8f0;
+  -moz-transition: text-shadow 0.3s ease-in-out;
+  -o-transition: text-shadow 0.3s ease-in-out;
+  -webkit-transition: text-shadow 0.3s ease-in-out;
+  transition: text-shadow 0.3s ease-in-out;
+  text-shadow: -2px -2px 0 rgba(36, 27, 20, 0.65), -2px 2px 0 rgba(36, 27, 20, 0.65), 2px -2px 0 rgba(36, 27, 20, 0.65), 2px 2px 0 rgba(36, 27, 20, 0.65), rgba(36, 27, 20, 0.65) 1px 1px, rgba(36, 27, 20, 0.65) 2px 2px, rgba(36, 27, 20, 0.65) 3px 3px, rgba(36, 27, 20, 0.65) 4px 4px, rgba(36, 27, 20, 0.65) 5px 5px, rgba(36, 27, 20, 0.65) 6px 6px, rgba(36, 27, 20, 0.65) 7px 7px, rgba(36, 27, 20, 0.65) 8px 8px, rgba(36, 27, 20, 0.65) 9px 9px, rgba(36, 27, 20, 0.65) 10px 10px, rgba(36, 27, 20, 0.65) 11px 11px, rgba(36, 27, 20, 0.65) 12px 12px, rgba(36, 27, 20, 0.65) 13px 13px, rgba(36, 27, 20, 0.65) 14px 14px, rgba(36, 27, 20, 0.65) 15px 15px, 15px 20px 0px red, 15px 21px 0px red, 15px 22px 0px red, 15px 23px 0px red, 15px 24px 0px red, 15px 25px 0px red, 15px 26px 0px red, 15px 27px 0px red, 15px 28px 0px red, 16px 28px 0px red, 17px 28px 0px red, 18px 28px 0px red;
+  font-size: 14em;
+  letter-spacing: 0.135em;
+  line-height: 0;
+  text-transform: uppercase;
+  font-family: "Yanone Kaffeesatz";
+  margin: 0.4em 0;
+}
+.giga .char1, .giga .char13 {
+  font-size: 1.25em;
+  position: relative;
+  top: 0.15em;
+}
+.giga:hover {
+  cursor: pointer;
+  text-shadow: -2px -2px 0 rgba(36, 27, 20, 0.65), -2px 2px 0 rgba(36, 27, 20, 0.65), 2px -2px 0 rgba(36, 27, 20, 0.65), 2px 2px 0 rgba(36, 27, 20, 0.65), rgba(36, 27, 20, 0.65) 1px 1px, rgba(36, 27, 20, 0.65) 2px 2px, rgba(36, 27, 20, 0.65) 3px 3px, rgba(36, 27, 20, 0.65) 4px 4px, rgba(36, 27, 20, 0.65) 5px 5px, rgba(36, 27, 20, 0.65) 6px 6px, rgba(36, 27, 20, 0.65) 7px 7px, rgba(36, 27, 20, 0.65) 8px 8px, rgba(36, 27, 20, 0.65) 9px 9px, rgba(36, 27, 20, 0.65) 10px 10px, rgba(36, 27, 20, 0.65) 11px 11px, rgba(36, 27, 20, 0.65) 12px 12px, rgba(36, 27, 20, 0.65) 13px 13px, rgba(36, 27, 20, 0.65) 14px 14px, rgba(36, 27, 20, 0.65) 15px 15px, 15px 20px 0px red, 15px 21px 0px red, 15px 22px 0px red, 15px 23px 0px red, 15px 24px 0px red, 15px 25px 0px red, 15px 26px 0px red, 15px 27px 0px red, 15px 28px 0px red, 16px 28px 0px red, 17px 28px 0px red, 18px 28px 0px red, 19px 28px 0px red, 20px 28px 0px red, 21px 28px 0px red, 22px 28px 0px red, 23px 28px 0px red, 24px 28px 0px red;
+}

@@ -20,7 +20,8 @@ h1 {
 .checkerBoard {
   border-collapse: collapse;
   border: thin black solid;
-  margin: 100px auto;
+  float: left;
+  margin: 0px 0px 0px 30vw;
   
 }
 .cell{

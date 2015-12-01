@@ -1,15 +1,19 @@
-$(document).ready(function() {
-      $(".mybtn").click(function(){
+$(document).ready(function()
+{
+      $(".mybtn").click(function()
+      {
       		$(".overlay-main").slideUp(1000);
-      		if($(this).hasClass("btn-danger")){
+      		if($(this).hasClass("btn-danger"))
+                  {
       				team = "red";
       				$('.piece.black').draggable('disable');
       				$('header').text("You are on the Red Team");
       				$('header').css("background-color", "#c31b3b");
       				$('header').css("font-size", "50px");
       				$('header').css("color", "white");
-      			}
-      		else{
+      		}
+                  else
+                  {
       				team = "black";
       				$('.piece.red').draggable('disable');
       				$('header').text("You are on the Grey Team");
@@ -17,11 +21,67 @@ $(document).ready(function() {
       				$('header').css("font-size", "50px");
       				$('header').css("color", "white");
 
+
       		}
       		$("#turn_display").css("display", "");
-      		$(".checkerboard").css("margin", "0px auto");
+                  subscribe = pubnub.subscribe({
+                        channel: team,
+                        message: function(m){
+                              // <div class="chat">
+                              //       <div class="message me">
+                              //             <img src="http://api.randomuser.me/portraits/med/women/36.jpg" />
+                              //             <div><p>Curabitur feugiat libero sed lacinia sollicitudin.</p></div>
+                              //       </div>
+                              // </div>
+                              
+                              var messageDiv = document.createElement('div');
+
+                              if (m["MyUuid"] == uniqueID) {
+                                    console.log("this is me");
+                                    messageDiv.className = "message me";
+                              }
+                              else{
+                                    console.log("this is not me");
+                                    console.log(m["MyUuid"]);
+                                    console.log(PUBNUB.uuid());
+                                    messageDiv.className = "message";
+                              };
+
+                              var messageImage = document.createElement('img');
+                              messageImage.src = "http://api.randomuser.me/portraits/med/women/36.jpg";
+                              messageDiv.appendChild(messageImage);
+
+                              var innerMessageDiv = document.createElement('div');
+                              var innerMessageDivP = document.createElement('p');
+                              innerMessageDivP.innerHTML = m["text"];
+
+                              innerMessageDiv.appendChild(innerMessageDivP);
+                              messageDiv.appendChild(innerMessageDiv);
+
+                              var chatBox = document.getElementById('chatbox');
+                              chatBox.appendChild(messageDiv);
 
 
-
+                        },
+                        error: function (error) {
+                              // Handle error here
+                        }
+                  });
       });
 });
+function process(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if (code == 13) { //Enter keycode
+      
+      var obj = {text:document.getElementById('input').value, MyUuid: uniqueID};
+      var jsonString= JSON.stringify(obj);
+      pubnub.publish({
+          channel: team,        
+          message: obj,
+          callback : function(m){
+            document.getElementById("input").value = "";                   
+          }
+      });
+      //document.getElementById("input").value = "";                 
+    }
+}

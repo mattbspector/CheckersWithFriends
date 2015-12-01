@@ -7,12 +7,14 @@ var subscribe = "";
 var pubnub = "";
 var turn = "black";
 var team = "";
+var uniqueID;
 $(window).ready(function() {
-   pubnub = PUBNUB({
+  pubnub = PUBNUB({
     subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
     publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
   });
-    
+  uniqueID = PUBNUB.uuid();
+
     //Query History and set Board String
     history = pubnub.history({
      channel: 'general_channel',
@@ -30,6 +32,11 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
                 $("#turn_display").html("Red's Turn");
+                
+                var color = $( this ).css( "background-color" );
+                $( "#result" ).html( "That div is <span style='color:" +
+                    color + ";'>" + color + "</span>." );
+
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
 
@@ -64,6 +71,9 @@ $(window).ready(function() {
             // Handle error here
         }
     });
+
+
+      
 
      
     });
