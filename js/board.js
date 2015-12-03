@@ -23,7 +23,6 @@ $(window).ready(function() {
      channel: 'general_channel',
      callback: function(m){
          boardString = JSON.stringify(m[0][0]);
-         console.log(m[0][0]);
          if(m[0][0]["turn"] == "black"){
                for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
                   $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +m[0][0]["moves"]["black"][i]+ "</div></a>" )
@@ -216,7 +215,6 @@ $(window).ready(function() {
             boardJson["turn"] = "red";
 
         }
-        console.log(boardJson["board"]);
         // $(".lefty").append("<div>" + boardJson["board"] + "</div>");
 
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){

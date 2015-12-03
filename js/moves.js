@@ -1,6 +1,14 @@
 var checkerBoard = "";
+var cTurn = "";
 $(document).ready(function(){
 	$(".votingMain").on('mouseover', '.votingLink', function(){
+
+    if($(".currentTurn").hasClass("black")){
+      cTurn = "black";
+    }
+    else{
+      cTurn = "red";
+    }
 		checkerBoard = $(".checkerBoard");
 		$(".checkerBoard").children().remove();
 		for (var i=0;i<8;i++){
@@ -30,6 +38,7 @@ $(document).ready(function(){
             }
         }
       }
+      $(".piece." + cTurn).addClass("currentTurn");
       //give the pieces draggablility
       $('.piece').draggable({
           containment: '.checkerBoard',
@@ -48,11 +57,19 @@ $(document).ready(function(){
         $('.piece.black').draggable('disable');
       }
 
-      $('.piece.'+startingColor).draggable('disable');
+
+      // $('.piece.'+startingColor).draggable('disable');
+
 	});
 
 
 	$(".votingMain").on('mouseout', '.votingLink', function(){
+    if($(".currentTurn").hasClass("black")){
+      cTurn = "black";
+    }
+    else{
+      cTurn = "red";
+    }
 		checkerBoard = $(".checkerBoard");
 		$(".checkerBoard").children().remove();
 		for (var i=0;i<8;i++){
@@ -100,8 +117,8 @@ $(document).ready(function(){
         $('.piece.black').draggable('disable');
       }
 
-      $('.piece.'+startingColor).draggable('disable');
-	});
-		console.log(turn);
+      // $('.piece.'+startingColor).draggable('disable');
+      $(".piece." + cTurn).addClass("currentTurn");
 
+	});
 });	
