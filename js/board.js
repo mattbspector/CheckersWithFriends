@@ -22,11 +22,9 @@ $(window).ready(function() {
 
      channel: 'general_channel',
      callback: function(m){
+        console.log(m[0][0]);
          boardString = JSON.stringify(m[0][0]);
          if(m[0][0]["turn"] == "black"){
-               for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +m[0][0]["moves"]["black"][i]+ "</div></a>" )
-                }
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
@@ -34,11 +32,8 @@ $(window).ready(function() {
                 $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
 
-            }
+          }
           else{
-              for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +m[0][0]["moves"]["red"][i]+ "</div></a>" )
-                }
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
@@ -60,7 +55,7 @@ $(window).ready(function() {
             $(".votingLink").remove();
             if(m["turn"] == "black"){
               for(var i = 0; i < m["moves"]["black"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +m["moves"]["black"][i]+ "</div></a>" )
+                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["black"][i]["formatted_move_start"]+ " to " +m["moves"]["black"][i]["formatted_move_end"] + "</div><div class='votingInner'>" +m["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
                 }
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
@@ -70,7 +65,7 @@ $(window).ready(function() {
             }
             else{
                 for(var i = 0; i < m["moves"]["red"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +m["moves"]["red"][i]+ "</div></a>" )
+                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["red"][i]["formatted_move_start"]+ " to " +m["moves"]["red"][i]["formatted_move_end"] + "</div><div class='votingInner'>" +m["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
                 }
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
@@ -247,10 +242,12 @@ $(window).ready(function() {
     function proposeNewMove(event, ui){
       var oldrow = parseInt(ui.draggable.parent().attr('row'));
       var oldcol = parseInt(ui.draggable.parent().attr('col'));
+      console.log(oldcol + " " + oldrow);
       var newcol = parseInt($(this).attr('col'));
       var newrow = parseInt($(this).attr('row'));
       var newindex = (8 * newrow) + newcol;
-        
+      console.log(newcol + " " + newrow);      
+
         var oldindex = (8 * oldrow) + oldcol;
         
         var boardJson = JSON.parse(boardString);
@@ -272,7 +269,6 @@ $(window).ready(function() {
                  myNewBoard = myNewBoard.replaceAt(newindex, '1');
             }
         }
-        // $(".lefty").append("<div>" + boardJson["board"] + "</div>");
 
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
             var middleRow = (oldrow + newrow)/2;
@@ -281,14 +277,18 @@ $(window).ready(function() {
             myNewBoard = myNewBoard.replaceAt(middleIndex, '0');
         }
         
+        var vote_obj = {
+            board_as_long_ass_string: myNewBoard,
+            formatted_move_start: oldcol+","+oldrow,
+            formatted_move_end: newcol+","+newrow,
+            user_uuid: uniqueID
+        };
 
         if(boardJson["turn"] == "black"){
-          boardJson["moves"]["black"].push(myNewBoard);
-          $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +myNewBoard+ "</div></a>" )
+          boardJson["moves"]["black"].push(vote_obj);
         }
         else{
-          boardJson["moves"]["red"].push(myNewBoard);
-          $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +myNewBoard+ "</div></a>" )
+          boardJson["moves"]["red"].push(vote_obj);
         }
 
         console.log(boardJson);

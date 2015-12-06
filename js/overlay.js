@@ -57,6 +57,27 @@ $(document).ready(function()
                        reverse: false // false is the default
                       });
 
+                  history = pubnub.history({
+
+                   channel: 'general_channel',
+                   callback: function(m){
+                      console.log(m[0][0]);
+                      boardString = JSON.stringify(m[0][0]);
+                      if (team == "black") {
+                        for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
+                          $(".votingMain").append("<a class='votingLink' href='#'><div>" +m[0][0]["moves"]["black"][i]["formatted_move_start"]+ " to " +m[0][0]["moves"]["black"][i]["formatted_move_end"] + "</div><div class='votingInner' >" +m[0][0]["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
+                        }
+                      };
+                      if (team == "red") {
+                        for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
+                          $(".votingMain").append("<a class='votingLink' href='#'><div>" +m[0][0]["moves"]["red"][i]["formatted_move_start"]+ " to " +m[0][0]["moves"]["red"][i]["formatted_move_end"] + "</div><div class='votingInner' >" +m[0][0]["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
+                        }
+                      };
+                    },
+                   count: 1, // 100 is the default
+                   reverse: false // false is the default
+                  });
+
 
                   subscribe = pubnub.subscribe({
                         channel: team,

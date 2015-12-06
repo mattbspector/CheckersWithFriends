@@ -1,7 +1,7 @@
 var checkerBoard = "";
 var cTurn = "";
 $(document).ready(function(){
-	$(".votingMain").on('mouseover', '.votingLink', function(){
+	$(".votingMain").on('mouseover', '.votingInner', function(){
 
     if($(".currentTurn").hasClass("black")){
       cTurn = "black";
