@@ -33,39 +33,39 @@ $(document).ready(function()
                            if(team == "black"){
                               for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
                                     if(!(m[0][0]["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
-                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']] = 1;
+                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["black"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["black"][i]['formatted_move_end']};
                                     }
                                     else{
-                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']]++;
+                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']]['count']++;
                                     }
                               }
                               var sortable = [];
                               for (var move in MovesMap){
-                                    sortable.push([move, MovesMap[move]]);
+                                    sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
                               }
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][2] +" to "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+ "</div></a>" )
                               }
                            }
                            else{
                                for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
                                     if(!(m[0][0]["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
-                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']] = 1;
+                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["red"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["red"][i]['formatted_move_end']};
                                     }
                                     else{
-                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']]++;
+                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']]['count']++;
                                     }
                               }
                               var sortable = [];
                               for (var move in MovesMap){
-                                    sortable.push([move, MovesMap[move]]);
+                                    sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
                               }
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][2] +" to "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+ "</div></a>" )
                               }
                                   
                            }     
@@ -84,39 +84,39 @@ $(document).ready(function()
                             if(team == "black"){
                               for(var i = 0; i < m["moves"]["black"].length; i++){
                                     if(!(m["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
-                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']] = 1;
+                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m["moves"]["black"][i]['formatted_move_start'], 'end_move': m["moves"]["black"][i]['formatted_move_end']};
                                     }
                                     else{
-                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']]++;
+                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']]['count']++;
                                     }
                               }
                               var sortable = [];
                               for (var move in MovesMap){
-                                    sortable.push([move, MovesMap[move]]);
+                                    sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
                               }
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][2] +" to "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+ "</div></a>" )
                               }
                            }
                            else{
                                 for(var i = 0; i < m["moves"]["red"].length; i++){
                                     if(!(m["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
-                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']] = 1;
+                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m["moves"]["red"][i]['formatted_move_start'], 'end_move': m["moves"]["red"][i]['formatted_move_end']};
                                     }
                                     else{
-                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']]++;
+                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']]['count']++;
                                     }
                               }
                               var sortable = [];
                               for (var move in MovesMap){
-                                    sortable.push([move, MovesMap[move]]);
+                                    sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
                               }
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][2] +" to "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+ "</div></a>" )
                               }
                                   
                            }  
