@@ -36,8 +36,12 @@
 		<div class='main'>
 		  <header class="logo">
 		  </header>
+		  <div class="countdown">
+		      <div class="seconds-container">
+		        	<div class="seconds"></div><span>seconds</span>
+		      </div>
+		  </div>
 		  <h3 id="turn_display" class="logo smaller"></h3>
-          <!-- <div class='radialtimer' id='timer'></div> -->
 		  <div class='victory'></div>
 		  <div class="lefty"></div>
 		  <table class='checkerBoard'></table>
@@ -47,7 +51,10 @@
 			<div class="chat" id="chatbox"></div>
 			<textarea id='input' placeholder='Press Enter To Send Chat' onkeypress="process(event, this)"></textarea>
 		</div>
-	</body> 
-			  <button onClick="reset()" style="position: absolute; bottom: 10;"> RESET</button>
+	</body>
+
+	
+	
+	<button onClick="reset()" style="position: absolute; bottom: 10;"> RESET</button>
 
 </hmtl>

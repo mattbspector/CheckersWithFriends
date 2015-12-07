@@ -19,7 +19,6 @@ $(window).ready(function() {
 
     //Query History and set Board String
     history = pubnub.history({
-
      channel: 'general_channel',
      callback: function(m){
         console.log(m[0][0]);
