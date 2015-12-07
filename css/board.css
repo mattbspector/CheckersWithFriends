@@ -1,6 +1,6 @@
 body{
   margin: 0;
-  background-color: #b3dfef;
+  background-color: #b3dfef; 
 }
 
 
@@ -21,8 +21,9 @@ h1 {
   border-collapse: collapse;
   border: thin black solid;
   float: left;
-  margin: 0px 0px 0px 30vw;
-  
+  margin: 0px 0px 0px 25vw;
+  width: 50vw;
+  height: 49vw;
 }
 .cell{
   width: 5vw;
@@ -33,7 +34,7 @@ h1 {
 }
 
 .piece {
-  margin-left: .25em;
+  margin-left: 0.75em;
   width: 4.5vw;
   height: 4.5vw;
   border: .2vw solid white;

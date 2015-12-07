@@ -53,7 +53,7 @@ $(window).ready(function() {
             $(".votingLink").remove();
             if(m["turn"] == "black"){
               for(var i = 0; i < m["moves"]["black"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["black"][i]["formatted_move_start"]+ " to " +m["moves"]["black"][i]["formatted_move_end"] + "</div><div class='votingInner'>" +m["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
+                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["black"][i]["formatted_move_start"]+ " to " +m["moves"]["black"][i]["formatted_move_end"] + "</div><div class='boardInner'>" +m["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
                 }
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
@@ -63,7 +63,7 @@ $(window).ready(function() {
             }
             else{
                 for(var i = 0; i < m["moves"]["red"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["red"][i]["formatted_move_start"]+ " to " +m["moves"]["red"][i]["formatted_move_end"] + "</div><div class='votingInner'>" +m["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
+                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["red"][i]["formatted_move_start"]+ " to " +m["moves"]["red"][i]["formatted_move_end"] + "</div><div class='boardInner'>" +m["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
                 }
                 $( ".checkerBoard" ).children().remove();
                 setup('black');

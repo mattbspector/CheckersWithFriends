@@ -1,5 +1,11 @@
 <html>
 	<head>
+		<!-- Begin Material Design Library -->
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<!-- End Material Design Library -->
+
 		<link href='https://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>		 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 		<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -33,11 +39,28 @@
 	</div>
 	<!--End Overlay-->
 
-	<!--Begin Voting Panel-->
+	<!--Begin Left Panel-->
 	<div class="votingMain">
-		<h3>Your Team's Votes!</h3>
+			
+			<div style="border: 2px solid black; height: 100px;">
+				<!--Begin Turn Display -->
+				<h3 id="turn_display" class="logo smaller"></h3>
+				<!--End Turn Display -->
+
+				<!--Begin Timer -->
+				<div class="countdown">
+				    <div class="seconds-container">
+				        	<div class="seconds logo smallest"></div>
+				        	<span class="logo smallest">seconds remaining</span>
+				    </div>
+				</div>
+				<!-- End Timer -->
+			</div>
+			
+			
+			<h3>Your Team's Votes!</h3>
 	</div>
-	<!--End Voting Panel-->
+	<!--End Left Panel-->
 
 	<!--Begin Middle Panel-->
 	<div class='main'>
@@ -47,18 +70,7 @@
 		<!--End Team Header-->
 
 		<div>
-			<!--Begin Turn Display -->
-			<h3 id="turn_display" class="logo smaller"></h3>
-			<!--End Turn Display -->
-
-			<!--Begin Timer -->
-			<div class="countdown">
-			    <div class="seconds-container">
-			        	<div class="seconds logo smaller"></div>
-			        	<span class="logo smaller">seconds remaining</span>
-			    </div>
-			</div>
-			<!-- End Timer -->
+			
 		</div>
 		
 
