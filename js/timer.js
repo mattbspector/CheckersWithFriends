@@ -9,7 +9,7 @@ $(function() {
     	callback: function(m){
         	var now = new Date(m[0]);
         	var currentDate = Date.now();
-      		var endDate = new Date((now.getFullYear() + 1) + '/01/01');
+      		var endDate = new Date((now.getFullYear() + 10) + '/01/01');
       		console.log(m[0]);
       		var $days = $('.days'),
 			 	$hours = $('.hours'),
