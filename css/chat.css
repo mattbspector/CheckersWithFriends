@@ -211,6 +211,8 @@ body {
   overflow: auto;
   position: absolute;
   right: 0;
+  font-family: 'Unica One', cursive;
+
 }
 
 .outterChatBox{
