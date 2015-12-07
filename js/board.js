@@ -278,7 +278,17 @@ $(window).ready(function() {
              channel: 'general_channel',
              callback: function(m){
                  boardString = JSON.stringify(m[0][0]);
+                 console.log(m[0][0]['turn']);
+                 MovesMap = new Object();
                  if(m[0][0]['turn'] == "black"){
+                  for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
+                                    if(!(m[0][0]["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
+                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["black"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["black"][i]['formatted_move_end']};
+                                    }
+                                    else{
+                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']]['count']++;
+                                    }
+                              }
                     var sortable = [];
                     for (var move in MovesMap){
                           sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
@@ -287,6 +297,14 @@ $(window).ready(function() {
                     myNewBoard =  sortable[0][0];
                  }
                  else{
+                  for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
+                                    if(!(m[0][0]["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
+                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["red"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["red"][i]['formatted_move_end']};
+                                    }
+                                    else{
+                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']]['count']++;
+                                    }
+                    }
                     var sortable = [];
                     for (var move in MovesMap){
                           sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
