@@ -48,36 +48,7 @@ $(window).ready(function() {
      reverse: false // false is the default
     });
     //NOT SURE IF IT DOES ANYTHING
-     subscribe = pubnub.subscribe({
-        channel: 'general_channel',
-        message: function(m){
-            boardString = JSON.stringify(m);
-            $(".votingLink").remove();
-            if(m["turn"] == "black"){
-              for(var i = 0; i < m["moves"]["black"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["black"][i]["formatted_move_start"]+ " to " +m["moves"]["black"][i]["formatted_move_end"] + "</div><div class='boardInner'>" +m["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
-                }
-                $( ".checkerBoard" ).children().remove();
-                setup('red');
-                $("#turn_display").html("It is Grey's Turn");
-                $(".piece.black").addClass("currentTurn");
-                $(".piece.red").removeClass("currentTurn");
-            }
-            else{
-                for(var i = 0; i < m["moves"]["red"].length; i++){
-                  $(".votingMain").append("<a class='votingLink' href='#'><div>" +m["moves"]["red"][i]["formatted_move_start"]+ " to " +m["moves"]["red"][i]["formatted_move_end"] + "</div><div class='boardInner'>" +m["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
-                }
-                $( ".checkerBoard" ).children().remove();
-                setup('black');
-                $("#turn_display").html("It is Red's Turn");
-                $(".piece.red").addClass("currentTurn");
-                $(".piece.black").removeClass("currentTurn");
-            }
-        },
-        error: function (error) {
-            // Handle error here
-        }
-    });
+
 
 
       
