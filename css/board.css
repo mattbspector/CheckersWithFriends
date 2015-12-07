@@ -26,8 +26,8 @@ h1 {
   height: 49vw;
 }
 .cell{
-  width: 5vw;
-  height: 5vw;
+  width: 5.5vw;
+  height: 5.5vw;
   min-height: 3vw;
   min-width: 3vw;
   border: thin white solid;
