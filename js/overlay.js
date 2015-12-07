@@ -79,6 +79,21 @@ $(document).ready(function()
                     message: function(m){
                         boardString = JSON.stringify(m);
                         $(".votingLink").remove();
+                        if(m["turn"] == "black"){
+                            $( ".checkerBoard" ).children().remove();
+                            setup('red');
+                            $("#turn_display").html("Grey's Turn");
+                            $(".piece.black").addClass("currentTurn");
+                            $(".piece.red").removeClass("currentTurn");
+                        }
+                        else{
+                            $( ".checkerBoard" ).children().remove();
+                            setup('black');
+                            $("#turn_display").html("Red's Turn");
+                            $(".piece.red").addClass("currentTurn");
+                            $(".piece.black").removeClass("currentTurn");
+                        }
+                        $(".votingLink").remove();
                         MovesMap = new Object();
                             if(team == "black"){
                               for(var i = 0; i < m["moves"]["black"].length; i++){
