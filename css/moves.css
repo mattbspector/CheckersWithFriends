@@ -7,6 +7,8 @@
     width: 25%;
     height: 85vh;
     background-color: #FFF;
+    font-family: 'Unica One', cursive;
+
 }
 .votingInner{
 	border: 2px #333 solid;

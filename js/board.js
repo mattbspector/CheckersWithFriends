@@ -26,7 +26,7 @@ $(window).ready(function() {
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
-                $("#turn_display").html("Grey's Turn");
+                $("#turn_display").html("It is Grey's Turn");
                 $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
 
@@ -35,7 +35,7 @@ $(window).ready(function() {
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
-                $("#turn_display").html("Red's Turn");
+                $("#turn_display").html("It is Red's Turn");
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
 
@@ -57,7 +57,7 @@ $(window).ready(function() {
                 }
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
-                $("#turn_display").html("Grey's Turn");
+                $("#turn_display").html("It is Grey's Turn");
                 $(".piece.black").addClass("currentTurn");
                 $(".piece.red").removeClass("currentTurn");
             }
@@ -67,7 +67,7 @@ $(window).ready(function() {
                 }
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
-                $("#turn_display").html("Red's Turn");
+                $("#turn_display").html("It is Red's Turn");
                 $(".piece.red").addClass("currentTurn");
                 $(".piece.black").removeClass("currentTurn");
             }

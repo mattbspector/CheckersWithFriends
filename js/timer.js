@@ -21,9 +21,6 @@ $(function() {
 			
 			setInterval(function() {
 				currentDate = Date.now();
-				//console.log(currentDate);
-			    //console.log(endDate);
-
 			    if (currentDate < endDate) {
 
 			    	var time = endDate - currentDate;
