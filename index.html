@@ -16,6 +16,7 @@
     	<script src="js/board.js"></script>
     	<script src="js/overlay.js"></script>
         <script src="js/timer.js"></script>
+        <script src="js/moves.js"></script>
         <script src="http://cdn.pubnub.com/pubnub-3.7.15.min.js"></script>
 
 
@@ -29,27 +30,24 @@
 				<button type="button" class="mybtn btnn btn-grey btn-block">Grey Team</button>
 			</div>
 		</div>
+		<div class="votingMain">
+			<h3>Your Team's Votes!</h3>
+		</div>
 		<div class='main'>
-
-
 		  <header class="logo">
 		  </header>
-
-
 		  <h3 id="turn_display" class="logo smaller"></h3>
           <!-- <div class='radialtimer' id='timer'></div> -->
 		  <div class='victory'></div>
 		  <div class="lefty"></div>
 		  <table class='checkerBoard'></table>
-
 		</div>
-       
-<!--         <button onClick="reset()" style="margin-top: 15px;"> RESET</button>
- -->
 		<div class = "outterChatBox">
 			<div id="presenceBar"></div>
 			<div class="chat" id="chatbox"></div>
 			<textarea id='input' placeholder='Press Enter To Send Chat' onkeypress="process(event, this)"></textarea>
 		</div>
-	</body>    
+	</body> 
+			  <button onClick="reset()" style="position: absolute; bottom: 10;"> RESET</button>
+
 </hmtl>

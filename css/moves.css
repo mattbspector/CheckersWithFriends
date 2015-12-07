@@ -1,6 +1,28 @@
-.lefty{
-    float: left;
-    width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.votingMain{
+    position: absolute;
+    left: 0;
+    top: 50px;
+    overflow-x: hidden;
+    overflow-y: scroll; 
+    width: 25%;
+    height: 85vh;
+    background-color: #FFF;
+}
+.votingInner{
+	border: 2px #333 solid;
+	padding: 8px;
+	text-decoration: none;
+		color: #333;
+
+}
+.votingInner:hover{
+	background-color: blue;
+	color: white;
+}
+.votingLink{
+	text-decoration: none;
+	color: #333;
+}
+.votingLink:hover{
+	text-decoration: none;
 }
