@@ -44,7 +44,6 @@ $(document).ready(function()
                                     sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
                               }
                               sortable.sort(function(a, b) {return b[1] - a[1]})
-                              console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
                                     $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][2] +" to "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+ "</div></a>" )
                               }
@@ -163,7 +162,6 @@ $(document).ready(function()
                   subscribe = pubnub.subscribe({
                         channel: team+"_chat",
                         presence: function(m){
-                              console.log(m["occupancy"]);
                               var bar = document.getElementById('presenceBar');
                               var icon = document.createElement('i');
                               icon.className = "fa fa-users";

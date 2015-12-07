@@ -10,7 +10,6 @@ $(function() {
         	var now = new Date(m[0]);
         	var currentDate = Date.now();
       		var endDate = new Date((now.getFullYear() + 10) + '/01/01');
-      		console.log(m[0]);
       		var $days = $('.days'),
 			 	$hours = $('.hours'),
 			    $mins = $('.minutes'),
@@ -39,7 +38,6 @@ $(function() {
 			    	$hours.text( format(hours) );
 			    	$days.text( days );  
 			   }
-   				console.log(seconds);
   			}, 100);  
     	},
    		count: 1,

@@ -21,7 +21,6 @@ $(window).ready(function() {
     history = pubnub.history({
      channel: 'general_channel',
      callback: function(m){
-        console.log(m[0][0]);
          boardString = JSON.stringify(m[0][0]);
          if(m[0][0]["turn"] == "black"){
                 //NotTurnButTeam
