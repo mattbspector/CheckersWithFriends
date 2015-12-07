@@ -127,7 +127,7 @@ $(document).ready(function()
                 });
 
                   history = pubnub.history({
-                       channel: team,
+                       channel: team+"_chat",
                        callback: function(m){
                               for (var i = 0; i < 100; i++) {
 
@@ -161,7 +161,7 @@ $(document).ready(function()
                       });
 
                   subscribe = pubnub.subscribe({
-                        channel: team,
+                        channel: team+"_chat",
                         presence: function(m){
                               console.log(m["occupancy"]);
                               var bar = document.getElementById('presenceBar');
@@ -225,7 +225,7 @@ function process(e) {
             };
             var jsonString= JSON.stringify(obj);
             pubnub.publish({
-                channel: team,        
+                channel: team+"_chat",        
                 message: obj,
                 callback : function(m){
                   document.getElementById("input").value = "";                   
