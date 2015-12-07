@@ -143,7 +143,7 @@ $(document).ready(function()
                   history = pubnub.history({
                        channel: team+"_chat",
                        callback: function(m){
-                              for (var i = 0; i < 100; i++) {
+                              for (var i = 0; i < m[0].length; i++) {
 
                                     var messageDiv = document.createElement('div');
 
