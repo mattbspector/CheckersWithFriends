@@ -29,9 +29,9 @@ $(function() {
 			    	if (seconds >= 30) {
 			    		seconds -= 30;
 			    	};
-			    	if (seconds < 0) {
+			    	if (seconds <= 0) {
 			    		seconds = 0;
-			    		//Call some function!!!!
+			    		exec();
 			    	};
 			    	var minutes = Math.floor((time / 60000) % 60);
 			    	var hours = Math.floor((time / 3600000) % 24);
