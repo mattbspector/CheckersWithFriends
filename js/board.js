@@ -10,6 +10,8 @@ var turn = "black";
 var team = "";
 var votingTeamTurn = "";
 var uniqueID;
+var exec = ""
+var myNewBoard = "";
 $(window).ready(function() {
   pubnub = PUBNUB({
     subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
@@ -46,7 +48,7 @@ $(window).ready(function() {
      count: 1, // 100 is the default
      reverse: false // false is the default
     });
-    
+    //NOT SURE IF IT DOES ANYTHING
      subscribe = pubnub.subscribe({
         channel: 'general_channel',
         message: function(m){
@@ -184,8 +186,7 @@ $(window).ready(function() {
     }
 
     function changJsonString(piece, oldcol, oldrow, newcol, newrow, activecells){
-        var newindex = (8 * newrow) + newcol;
-        
+        var newindex = (8 * newrow) + newcol;        
         var oldindex = (8 * oldrow) + oldcol;
         
         var boardJson = JSON.parse(boardString);
@@ -226,8 +227,8 @@ $(window).ready(function() {
             }
 
         }
-        console.log(boardJson);
         //Publish boardJSON
+        boardJson['moves'] = {'black' : [], 'red' : []};
         var pubnub = PUBNUB({
             subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
             publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
@@ -301,28 +302,84 @@ $(window).ready(function() {
             message: boardJson,
             callback : function(m){}
         });
-    }    
-    function handlePieceDrop(event, ui){
-      var oldRow = parseInt(ui.draggable.parent().attr('row'));
-      var oldCol = parseInt(ui.draggable.parent().attr('col'));
-      var newCol = parseInt($(this).attr('col'));
-      var newRow = parseInt($(this).attr('row'));
-      removeActive();
-      $(this).append(ui.draggable);
-      $('#draggableHelper').remove();
+    }
+    exec = function executeMove(){
+      history = pubnub.history({
+             channel: 'general_channel',
+             callback: function(m){
+                 boardString = JSON.stringify(m[0][0]);
+                 if(m[0][0]['turn'] == "black"){
+                    var sortable = [];
+                    for (var move in MovesMap){
+                          sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
+                    }
+                    sortable.sort(function(a, b) {return b[1] - a[1]})
+                    myNewBoard =  sortable[0][0];
+                 }
+                 else{
+                    var sortable = [];
+                    for (var move in MovesMap){
+                          sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
+                    }
+                    sortable.sort(function(a, b) {return b[1] - a[1]})
+                    myNewBoard =  sortable[0][0];    
+                 }
+                 var startspot = MovesMap[myNewBoard]['start_move'];
+                 var endspot = MovesMap[myNewBoard]['end_move'];
+                 startspot = startspot.split(',');
+                 endspot = endspot.split(',');
+                 piece1 = $("td[row='"+ endspot[1]+"']td[col='"+ endspot[0]+"']");
+                 piece2 = $("td[row='"+ startspot[1]+"']td[col='"+ startspot[0]+"']");
+                 var mypiece = "";
 
+                 if(piece1[0].children.length > 0){
+                    mypiece = $("td[row='"+ endspot[1]+"']td[col='"+ endspot[0]+"'] .piece")
+                 }else{
+                    mypiece = $("td[row='"+ startspot[1]+"']td[col='"+ startspot[0]+"'] .piece");
+                 }
+                var boardJson = JSON.parse(boardString);
+                MovesMap = new Object();
+                boardJson['moves'] = {'black' : [], 'red' : []};
+                var pubnub = PUBNUB({
+                      subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+                      publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+                  });
+                  pubnub.publish({
+                      channel: 'general_channel',        
+                      message: boardJson,
+                      callback : function(m){
+                         handlePieceDrop(mypiece, startspot, endspot);
+                      }
+                  });
+                
+                 votingsimulationBoard = myNewBoard;
+
+              },
+       count: 1, // 100 is the default
+       reverse: false // false is the default
+      });
+    }
+    
+    function handlePieceDrop(mypiece, startspot, endspot){
+      console.log($(this));
+      var oldRow = parseInt(startspot[1]);
+      var oldCol = parseInt(startspot[0]);
+      var newCol = parseInt(endspot[0]);
+      var newRow = parseInt(endspot[1]);
+      removeActive();
+      $('#draggableHelper').remove();
       var color = 'black';
-      if (ui.draggable.hasClass('red')){color = 'red';}
+      if (mypiece.hasClass('red')){color = 'red';}
 
       if (Math.abs(oldRow-newRow) == 2 || Math.abs(oldCol-newCol) == 2){
-        jumpPiece(ui.draggable,color,oldRow,oldCol,newRow,newCol);
+        jumpPiece(mypiece,color,oldRow,oldCol,newRow,newCol);
       }
 
-      if (color == 'black' && newCol == 7){ui.draggable.addClass('king');}
-      else if (color == 'red' && newCol == 0){ui.draggable.addClass('king');}
+      if (color == 'black' && newCol == 7){mypiece.addClass('king');}
+      else if (color == 'red' && newCol == 0){mypiece.addClass('king');}
 
       if ($('.activeCell').length == 0){
-        if (ui.draggable.hasClass('red')){
+        if (mypiece.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
           $("#turn_display").html("Grey's Turn");
@@ -335,12 +392,12 @@ $(window).ready(function() {
           turn = "black";
 
         }
-        changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow, 0);
+        changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);
       }
       else {
           $('.piece').draggable('disable');
           ui.draggable.draggable('enable');
-          changJsonString(ui.draggable, oldCol, oldRow, newCol, newRow, 1);
+          changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 1);
       }
         
     }

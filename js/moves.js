@@ -3,8 +3,8 @@ var cTurn = "";
 $(document).ready(function(){
 
   $(".votingMain").on('click', '.votingLink', function(){
+    //NEED TO ADD VOTES TO THE VOTING OBJECT ON PUBNUB
     $(".votingLink").remove();
-    console.log($(this));
     MovesMap[$(this)[0].firstChild.firstElementChild.innerText]['count']++;
     var sortable = [];
     for (var move in MovesMap){
@@ -15,6 +15,10 @@ $(document).ready(function(){
     for(var i = 0; i < sortable.length; i++){
           $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][2] +" to "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+ "</div></a>" )
     }
+    // if(sortable[0][1] >= 3){
+    //   $(".votingLink").remove();
+    //   exec();
+    // }
   });
 
 	$(".votingMain").on('mouseover', '.votingInner', function(){
@@ -136,4 +140,8 @@ $(document).ready(function(){
       $(".piece." + cTurn).addClass("currentTurn");
 
 	});
-});	
+});
+
+
+
+
