@@ -1,6 +1,21 @@
 var checkerBoard = "";
 var cTurn = "";
 $(document).ready(function(){
+
+  $(".votingMain").on('click', '.votingLink', function(){
+    $(".votingLink").remove();
+    MovesMap[$(this)[0].innerText]++;
+    var sortable = [];
+    for (var move in MovesMap){
+          sortable.push([move, MovesMap[move]]);
+    }
+    sortable.sort(function(a, b) {return b[1] - a[1]})
+    console.log(sortable);
+    for(var i = 0; i < sortable.length; i++){
+          $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+    }
+  });
+
 	$(".votingMain").on('mouseover', '.votingInner', function(){
 
     if($(".currentTurn").hasClass("black")){
