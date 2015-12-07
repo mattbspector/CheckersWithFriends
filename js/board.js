@@ -361,6 +361,7 @@ $(window).ready(function() {
     function myHelper( event ) {return '<div id="draggableHelper" class="piece"></div>';}
 
     function reset(){
+      MovesMap = new Object();
         //Publish boardJSON
         var pubnub = PUBNUB({
             subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',

@@ -1,3 +1,4 @@
+var MovesMap = new Object();
 $(document).ready(function()
 {
 
@@ -23,6 +24,106 @@ $(document).ready(function()
       				$('header').css("color", "white");
       		}
       		$("#turn_display").css("display", "");
+                   history = pubnub.history({
+                       channel: 'general_channel',
+                       callback: function(m){
+                           boardString = JSON.stringify(m[0][0]);
+                           if(team == "black"){
+                              for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
+                                    if(!(m[0][0]["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
+                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']] = 1;
+                                    }
+                                    else{
+                                          MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']]++;
+                                    }
+                              }
+                              var sortable = [];
+                              for (var move in MovesMap){
+                                    sortable.push([move, MovesMap[move]]);
+                              }
+                              sortable.sort(function(a, b) {return b[1] - a[1]})
+                              console.log(sortable);
+                              for(var i = 0; i < sortable.length; i++){
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                              }
+                           }
+                           else{
+                               for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
+                                    if(!(m[0][0]["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
+                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']] = 1;
+                                    }
+                                    else{
+                                          MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']]++;
+                                    }
+                              }
+                              var sortable = [];
+                              for (var move in MovesMap){
+                                    sortable.push([move, MovesMap[move]]);
+                              }
+                              sortable.sort(function(a, b) {return b[1] - a[1]})
+                              console.log(sortable);
+                              for(var i = 0; i < sortable.length; i++){
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                              }
+                                  
+                           }     
+          //Setup the board and choose the starting color
+                        },
+                 count: 1, // 100 is the default
+                 reverse: false // false is the default
+                });
+
+                 subscribe = pubnub.subscribe({
+                    channel: 'general_channel',
+                    message: function(m){
+                        boardString = JSON.stringify(m);
+                        $(".votingLink").remove();
+                        MovesMap = new Object();
+                            if(team == "black"){
+                              for(var i = 0; i < m["moves"]["black"].length; i++){
+                                    if(!(m["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
+                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']] = 1;
+                                    }
+                                    else{
+                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']]++;
+                                    }
+                              }
+                              var sortable = [];
+                              for (var move in MovesMap){
+                                    sortable.push([move, MovesMap[move]]);
+                              }
+                              sortable.sort(function(a, b) {return b[1] - a[1]})
+                              console.log(sortable);
+                              for(var i = 0; i < sortable.length; i++){
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                              }
+                           }
+                           else{
+                                for(var i = 0; i < m["moves"]["red"].length; i++){
+                                    if(!(m["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
+                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']] = 1;
+                                    }
+                                    else{
+                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']]++;
+                                    }
+                              }
+                              var sortable = [];
+                              for (var move in MovesMap){
+                                    sortable.push([move, MovesMap[move]]);
+                              }
+                              sortable.sort(function(a, b) {return b[1] - a[1]})
+                              console.log(sortable);
+                              for(var i = 0; i < sortable.length; i++){
+                                    $(".votingMain").append("<a class='votingLink' href='#'><div class='votingInner'>" +sortable[i][0]+ "</div></a>" )
+                              }
+                                  
+                           }  
+                    },
+                    error: function (error) {
+                        // Handle error here
+                    }
+                });
+
                   history = pubnub.history({
                        channel: team,
                        callback: function(m){
@@ -57,26 +158,26 @@ $(document).ready(function()
                        reverse: false // false is the default
                       });
 
-                  history = pubnub.history({
+                  // history = pubnub.history({
 
-                   channel: 'general_channel',
-                   callback: function(m){
-                      console.log(m[0][0]);
-                      boardString = JSON.stringify(m[0][0]);
-                      if (team == "black") {
-                        for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
-                          $(".votingMain").append("<a class='votingLink' href='#'><div>" +m[0][0]["moves"]["black"][i]["formatted_move_start"]+ " to " +m[0][0]["moves"]["black"][i]["formatted_move_end"] + "</div><div class='votingInner' >" +m[0][0]["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
-                        }
-                      };
-                      if (team == "red") {
-                        for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
-                          $(".votingMain").append("<a class='votingLink' href='#'><div>" +m[0][0]["moves"]["red"][i]["formatted_move_start"]+ " to " +m[0][0]["moves"]["red"][i]["formatted_move_end"] + "</div><div class='votingInner' >" +m[0][0]["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
-                        }
-                      };
-                    },
-                   count: 1, // 100 is the default
-                   reverse: false // false is the default
-                  });
+                  //  channel: 'general_channel',
+                  //  callback: function(m){
+                  //     console.log(m[0][0]);
+                  //     boardString = JSON.stringify(m[0][0]);
+                  //     if (team == "black") {
+                  //       for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
+                  //         $(".votingMain").append("<a class='votingLink' href='#'><div>" +m[0][0]["moves"]["black"][i]["formatted_move_start"]+ " to " +m[0][0]["moves"]["black"][i]["formatted_move_end"] + "</div><div class='votingInner' >" +m[0][0]["moves"]["black"][i]["board_as_long_ass_string"]+ "</div></a>");
+                  //       }
+                  //     };
+                  //     if (team == "red") {
+                  //       for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
+                  //         $(".votingMain").append("<a class='votingLink' href='#'><div>" +m[0][0]["moves"]["red"][i]["formatted_move_start"]+ " to " +m[0][0]["moves"]["red"][i]["formatted_move_end"] + "</div><div class='votingInner' >" +m[0][0]["moves"]["red"][i]["board_as_long_ass_string"]+ "</div></a>");
+                  //       }
+                  //     };
+                  //   },
+                  //  count: 1, // 100 is the default
+                  //  reverse: false // false is the default
+                  // });
 
 
                   subscribe = pubnub.subscribe({
