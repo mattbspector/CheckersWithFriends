@@ -10,36 +10,32 @@ $(function() {
         	var now = new Date(m[0]);
         	var currentDate = Date.now();
       		var endDate = new Date((now.getFullYear() + 10) + '/01/01');
-      		var $days = $('.days'),
-			 	$hours = $('.hours'),
-			    $mins = $('.minutes'),
-			    $secs = $('.seconds');
+      		var $secs = $('.seconds');
+      		var time = endDate - currentDate;
+			var seconds = Math.floor((time / 1000) % 60);
+			if(seconds >= 30){seconds -= 30;}
+      		window.setTimeout(executeFunction, (seconds * 1000));
 			  
 			function format(v) {
 				return (v.toString().length == 1) ? '0' + v : v;
 			}
-			
+			function executeFunction(){
+				
+				setTimeout(executeFunction, 30000);
+			}
 			setInterval(function() {
 				currentDate = Date.now();
 			    if (currentDate < endDate) {
-
 			    	var time = endDate - currentDate;
-			    	
 			    	var seconds = Math.floor((time / 1000) % 60);
 			    	if (seconds >= 30) {
 			    		seconds -= 30;
-			    	};
-			    	if (seconds <= 0) {
-			    		seconds = 0;
-			    	};
+			    	}
 			    	var minutes = Math.floor((time / 60000) % 60);
 			    	var hours = Math.floor((time / 3600000) % 24);
 			    	var days = Math.floor((time / 86400000));
 			    
 			    	$secs.text( format(seconds) );
-			    	$mins.text( format(minutes) );
-			    	$hours.text( format(hours) );
-			    	$days.text( days );  
 			   }
   			}, 100);  
     	},
