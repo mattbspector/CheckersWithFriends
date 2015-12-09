@@ -1,0 +1,66 @@
+body{
+  margin: 0;
+  background-color: #b3dfef; 
+}
+
+
+.main {text-align:center;}
+
+h1 {
+  font-weight: 800;
+  font-size: 3.4em;
+  margin-bottom: 0.2em;
+  color: black;
+  font-family: Sans-Serif;
+}
+
+
+
+
+.checkerBoard {
+  border-collapse: collapse;
+  border: thin black solid;
+  float: left;
+  margin: 0px 0px 0px 25vw;
+  width: 50vw;
+  height: 49vw;
+}
+.cell{
+  width: 5.5vw;
+  height: 5.5vw;
+  min-height: 3vw;
+  min-width: 3vw;
+  border: thin white solid;
+}
+
+.piece {
+  margin-left: 0.75em;
+  width: 4.5vw;
+  height: 4.5vw;
+  border: .2vw solid white;
+}
+
+.black {background: black;}
+.white{background: white;}
+.activeCell {background: green;}
+.activeCell.hovered {background: blue;}
+
+.piece {border-radius: 3vw;}
+.piece.black {background: #787a7d; opacity: 0.6}
+.piece.red {background: #c31b3b; opacity: 0.6;}
+
+.piece .kingCenter {
+  display:none;
+  padding:1vw;
+}
+.piece.black .kingCenter {color: white;}
+.piece.red .kingCenter {color: black;}
+.piece.king .kingCenter {
+    display:inline-block;
+    font-size: 1em;
+}
+
+#draggableHelper {
+  opacity: .7;
+  background: green;
+}

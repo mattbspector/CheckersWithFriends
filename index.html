@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<!-- Begin Material Design Library -->
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<!-- End Material Design Library -->
+
+		<link href='https://fonts.googleapis.com/css?family=Unica+One' rel='stylesheet' type='text/css'>		 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/chat.css">
+		<link rel="stylesheet" type="text/css" href="css/board.css">
+        <link rel="stylesheet" type="text/css" href="css/timer.css">
+        <link rel="stylesheet" type="text/css" href="css/overlay.css">
+        <link rel="stylesheet" type="text/css" href="css/animations.css">
+        <link rel="stylesheet" type="text/css" href="css/moves.css">
+        <link rel="stylesheet" type="text/css" href="css/header.css">
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    	<script src="js/board.js"></script>
+    	<script src="js/overlay.js"></script>
+        <script src="js/timer.js"></script>
+        <script src="js/moves.js"></script>
+        <script src="http://cdn.pubnub.com/pubnub-3.7.15.min.js"></script>
+	</head>
+
+<body style="text-align: center;">
+	<!--Begin Overlay-->
+	<div class="overlay-main">
+		<h2 class="main-header">Choose A Team!</h2>
+		<div class="buttons">
+			<button type="button" class="mybtn btnn btn-danger btn-block">Red Team</button>
+
+			<button type="button" class="mybtn btnn btn-grey btn-block">Grey Team</button>
+		</div>
+	</div>
+	<!--End Overlay-->
+
+	<!--Begin Left Panel-->
+	<div class="votingMain">
+			
+			<div style="border: 2px solid black; height: 100px;background-color: rgba(128, 128, 128, 0.29);opacity: 0.9;">
+				<!--Begin Turn Display -->
+				<h3 id="turn_display" class="logo smaller"></h3>
+				<!--End Turn Display -->
+
+				<!--Begin Timer -->
+				<div class="countdown">
+				    <div class="seconds-container">
+				        	<div class="seconds logo smallest"></div>
+				        	<span class="logo smallest">seconds remaining</span>
+				    </div>
+				</div>
+				<!-- End Timer -->
+			</div>
+			
+			
+			<h3>Your Team's Votes!</h3>
+	</div>
+	<!--End Left Panel-->
+
+	<!--Begin Middle Panel-->
+	<div class='main'>
+
+		<!--Begin Team Header-->
+		<header class="logo"></header>
+		<!--End Team Header-->		
+
+		<div class='victory'></div>
+		<div class="lefty"></div>
+
+		<!--Begin checkerBoard -->
+		<table class='checkerBoard'></table>
+		<!--End checkerBoard -->
+
+	</div>
+	<!--End Middle Panel-->
+
+	<!--Begin Chat Panel-->
+	<div class = "outterChatBox">
+		<div id="presenceBar"></div>
+		<div class="chat" id="chatbox"></div>
+		<textarea id='input' placeholder='Press Enter To Send Chat' onkeypress="process(event, this)"></textarea>
+	</div>
+	<!--End Chat Panel-->
+
+
+	<!-- Trigger the modal with a button -->
+  	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="position: absolute">Open Modal</button>
+
+	<!-- Begin Trophy Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	   
+	      <!-- Modal content-->
+	      <div class="modal-content">	          
+	        
+	        <div class="modal-body" style="margin-top:10vh;">
+	         	<div class="trophy_wrapper">
+				    <div class="trophy_container">
+				        <img src="http://s22.postimg.org/tg9t79o0d/trophy.png" alt="" class="trophy" />
+				        <h1 id="winner" class="logo">Red Team Wins!</h1>
+				        <h3 class="logo smaller">
+				            Congratulations to the winners! Don't worry, a new game is starting right now!
+				        </h3>
+				    </div>
+				</div>
+			</div>
+
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+
+	      </div>
+	      
+		</div>
+	</div>
+	<!-- End Trophy Modal -->
+
+</body>	
+<button onClick="reset()" style="position: absolute; bottom: 10;"> RESET</button>
+<button onClick="exec()" style="position: absolute; top: 5;"> EXEC</button>
+
+</hmtl>

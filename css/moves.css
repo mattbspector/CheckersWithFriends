@@ -1,0 +1,55 @@
+.votingMain{
+    position: absolute;
+    left: 0;
+    top: 50px;
+    overflow-x: hidden;
+    overflow-y: scroll; 
+    width: 25%;
+    height: 93vh;
+    background-color: #FFF;
+    font-family: 'Unica One', cursive;
+
+}
+.votingInner{
+	/* border: 2px #333 solid; */
+	padding: 8px;
+	text-decoration: none;
+	color: #333;
+
+}
+.votingInner:hover{
+	/* background-color: blue;
+	color: white; */
+}
+.votingLink{
+	text-decoration: none;
+	color: #333;
+	width: 100%;
+	height: 50px;
+
+}
+.votingLink:hover{
+	text-decoration: none;
+}
+
+.boardInner{
+	display: none;
+}
+@keyframes flickerAnimation { /* flame pulses */
+  0%   { opacity:0; }
+  50%  { opacity:1; }
+  100% { opacity:0; }
+}
+@keyframes flickerAnimationtwo { /* flame pulses */
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.animate-flicker {
+    opacity:0;  
+    animation: flickerAnimation 3s infinite;
+}
+.animate-flickertwo {
+    opacity:1;  
+    animation: flickerAnimationtwo 3s infinite;
+}
