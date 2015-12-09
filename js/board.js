@@ -30,7 +30,7 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("It is Grey's Turn");
-                $("#turn_display").color("#787a7d");
+                $("#turn_display").css('color',"#787a7d");
                 $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
 
@@ -43,7 +43,7 @@ $(window).ready(function() {
                 $("#turn_display").html("It is Red's Turn");
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
-                $("#turn_display").color("#c31b3b");
+                $("#turn_display").css('color',"#c31b3b");
 
 
           }
@@ -397,7 +397,7 @@ $(window).ready(function() {
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
           $("#turn_display").html("It is Grey's Turn");
-          $("#turn_display").color("#787a7d");
+          $("#turn_display").css('color',"#787a7d");
 
           turn = "red";
         }
@@ -406,7 +406,7 @@ $(window).ready(function() {
           $('.piece.red').draggable('enable');
           $("#turn_display").html("It is Red's Turn");
           turn = "black";
-          $("#turn_display").color("#c31b3b");
+          $("#turn_display").css('color',"#c31b3b");
         }
         changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);
       }

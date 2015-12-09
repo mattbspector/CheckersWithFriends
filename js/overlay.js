@@ -109,7 +109,7 @@ $(document).ready(function()
                             $( ".checkerBoard" ).children().remove();
                             setup('red');
                             $("#turn_display").html("It is Grey's Turn");
-                            $("#turn_display").color("#787a7d");
+                            $("#turn_display").css('color', "#787a7d");
                             $(".piece.black").addClass("currentTurn");
                             $(".piece.red").removeClass("currentTurn");
                         }
@@ -117,7 +117,7 @@ $(document).ready(function()
                             $( ".checkerBoard" ).children().remove();
                             setup('black');
                             $("#turn_display").html("It is Red's Turn");
-                            $("#turn_display").color("#c31b3b");
+                            $("#turn_display").css('color', "#c31b3b");
                             $(".piece.red").addClass("currentTurn");
                             $(".piece.black").removeClass("currentTurn");
                         }
