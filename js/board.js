@@ -240,9 +240,11 @@ $(window).ready(function() {
             }
         }
 
+        var middleRow = -1;
+        var middleCol = -1;
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
-            var middleRow = (oldrow + newrow)/2;
-            var middleCol = (oldcol + newcol)/2;
+            middleRow = (oldrow + newrow)/2;
+            middleCol = (oldcol + newcol)/2;
             var middleIndex = (8 * middleRow) + middleCol;
             myNewBoard = myNewBoard.replaceAt(middleIndex, '0');
         }

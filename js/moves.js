@@ -1,5 +1,6 @@
 var checkerBoard = "";
 var cTurn = "";
+var notCTurn = "";
 $(document).ready(function(){
 
   $(".votingMain").on('click', '.votingLink', function(){
@@ -42,9 +43,11 @@ $(document).ready(function(){
 	$(".votingMain").on('mouseover', '.votingInner', function(){
     if($(".currentTurn").hasClass("black")){
       cTurn = "black";
+      notCTurn = "red";
     }
     else{
       cTurn = "red";
+      notCTurn = "black";
     }
 		checkerBoard = $(".checkerBoard");
 		$(".checkerBoard").children().remove();
@@ -97,12 +100,24 @@ $(document).ready(function(){
       startspace = startspace.split(',');
       endspace = endspace.split(',');
       var col1 = $("td[row='"+ endspace[1]+"']td[col='"+ endspace[0]+"']");
+      var col1 = $("td[row='"+ endspace[1]+"']td[col='"+ endspace[0]+"']");
       var col2 = $("td[row='"+ startspace[1]+"']td[col='"+ startspace[0]+"']");
       var piece = $("td[row='"+ endspace[1]+"']td[col='"+ endspace[0]+"'] .piece");
       var mypiece = piece.clone();
       col2.append(mypiece);
       mypiece.addClass("animate-flickertwo");
       piece.addClass("animate-flicker");
+      if (Math.abs(startspace[1]-endspace[1]) == 2 || Math.abs(startspace[0]-endspace[0]) == 2){
+           var middleRow = (parseInt(startspace[1]) + parseInt(endspace[1]))/2;
+           var middleCol = (parseInt(startspace[0]) + parseInt(endspace[0]))/2;
+           var jumpedCol = $("td[row='"+ middleRow+"']td[col='"+ middleCol+"']");
+           var jumpedpiece = mypiece.clone();
+           jumpedpiece.removeClass(cTurn);
+           jumpedpiece.removeClass("currentTurn");
+           jumpedpiece.addClass(notCTurn);
+           jumpedCol.append(jumpedpiece);           
+           jumpedpiece.addClass("animate-flickertwo");
+      }
 
       // $('.piece.'+startingColor).draggable('disable');
 
@@ -111,9 +126,11 @@ $(document).ready(function(){
 	$(".votingMain").on('mouseout', '.votingLink', function(){
     if($(".currentTurn").hasClass("black")){
       cTurn = "black";
+      notCTurn = "red";
     }
     else{
       cTurn = "red";
+      notCTurn = "black";
     }
 		checkerBoard = $(".checkerBoard");
 		$(".checkerBoard").children().remove();
