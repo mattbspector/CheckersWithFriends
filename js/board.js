@@ -316,8 +316,8 @@ $(window).ready(function() {
                  var endspot = MovesMap[myNewBoard]['end_move'];
                  startspot = startspot.split(',');
                  endspot = endspot.split(',');
-                 piece1 = $("td[row='"+ endspot[1]+"']td[col='"+ endspot[0]+"']");
-                 piece2 = $("td[row='"+ startspot[1]+"']td[col='"+ startspot[0]+"']");
+                 var piece1 = $("td[row='"+ endspot[1]+"']td[col='"+ endspot[0]+"']");
+                 var piece2 = $("td[row='"+ startspot[1]+"']td[col='"+ startspot[0]+"']");
                  var mypiece = "";
 
                  if(piece1[0].children.length > 0){

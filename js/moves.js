@@ -34,7 +34,6 @@ $(document).ready(function(){
       sortable.push([move, MovesMap[move]['count'],MovesMap[move]['start_move'], MovesMap[move]['end_move'] ]);
     }
     sortable.sort(function(a, b) {return b[1] - a[1]})
-    console.log(sortable);
     for(var i = 0; i < sortable.length; i++){
           $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+sortable[i][1]+"</span></div></a>");
     }
@@ -58,7 +57,6 @@ $(document).ready(function(){
         }
       }
       var board = $(this)[0].firstElementChild.innerText;
-      //"1010003001000303101000300100030310100030010003031010003001000303"  
       for (var i=0;i<8;i++){
         for (var j=0;j<8;j++){
             if(board[(8 * i) + j] == 1){
@@ -94,11 +92,21 @@ $(document).ready(function(){
         $('.piece.black').draggable('disable');
       }
 
+      var startspace = MovesMap[board]['start_move'];
+      var endspace = MovesMap[board]['end_move'];
+      startspace = startspace.split(',');
+      endspace = endspace.split(',');
+      var col1 = $("td[row='"+ endspace[1]+"']td[col='"+ endspace[0]+"']");
+      var col2 = $("td[row='"+ startspace[1]+"']td[col='"+ startspace[0]+"']");
+      var piece = $("td[row='"+ endspace[1]+"']td[col='"+ endspace[0]+"'] .piece");
+      var mypiece = piece.clone();
+      col2.append(mypiece);
+      mypiece.addClass("animate-flickertwo");
+      piece.addClass("animate-flicker");
 
       // $('.piece.'+startingColor).draggable('disable');
 
 	});
-
 
 	$(".votingMain").on('mouseout', '.votingLink', function(){
     if($(".currentTurn").hasClass("black")){
