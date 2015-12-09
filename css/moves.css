@@ -35,3 +35,21 @@
 .boardInner{
 	display: none;
 }
+@keyframes flickerAnimation { /* flame pulses */
+  0%   { opacity:0; }
+  50%  { opacity:1; }
+  100% { opacity:0; }
+}
+@keyframes flickerAnimationtwo { /* flame pulses */
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.animate-flicker {
+    opacity:0;  
+    animation: flickerAnimation 3s infinite;
+}
+.animate-flickertwo {
+    opacity:1;  
+    animation: flickerAnimationtwo 3s infinite;
+}

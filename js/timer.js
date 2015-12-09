@@ -20,7 +20,7 @@ $(function() {
 				return (v.toString().length == 1) ? '0' + v : v;
 			}
 			function executeFunction(){
-				
+				//put exec function
 				setTimeout(executeFunction, 30000);
 			}
 			setInterval(function() {
