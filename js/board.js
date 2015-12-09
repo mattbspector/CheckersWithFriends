@@ -30,8 +30,10 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("It is Grey's Turn");
+                $("#turn_display").color("#787a7d");
                 $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
+
 
           }
           else{
@@ -41,6 +43,8 @@ $(window).ready(function() {
                 $("#turn_display").html("It is Red's Turn");
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
+                $("#turn_display").color("#c31b3b");
+
 
           }
           //Setup the board and choose the starting color
@@ -392,15 +396,17 @@ $(window).ready(function() {
         if (mypiece.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          $("#turn_display").html("Grey's Turn");
+          $("#turn_display").html("It is Grey's Turn");
+          $("#turn_display").color("#787a7d");
+
           turn = "red";
         }
         else{
           $('.piece.black').draggable('disable');
           $('.piece.red').draggable('enable');
-          $("#turn_display").html("Red's Turn");
+          $("#turn_display").html("It is Red's Turn");
           turn = "black";
-
+          $("#turn_display").color("#c31b3b");
         }
         changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);
       }

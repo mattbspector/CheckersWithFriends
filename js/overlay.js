@@ -108,14 +108,16 @@ $(document).ready(function()
                         if(m["turn"] == "black"){
                             $( ".checkerBoard" ).children().remove();
                             setup('red');
-                            $("#turn_display").html("Grey's Turn");
+                            $("#turn_display").html("It is Grey's Turn");
+                            $("#turn_display").color("#787a7d");
                             $(".piece.black").addClass("currentTurn");
                             $(".piece.red").removeClass("currentTurn");
                         }
                         else{
                             $( ".checkerBoard" ).children().remove();
                             setup('black');
-                            $("#turn_display").html("Red's Turn");
+                            $("#turn_display").html("It is Red's Turn");
+                            $("#turn_display").color("#c31b3b");
                             $(".piece.red").addClass("currentTurn");
                             $(".piece.black").removeClass("currentTurn");
                         }
