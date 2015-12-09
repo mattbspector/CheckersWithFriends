@@ -430,7 +430,14 @@ $(window).ready(function() {
       $('.activeCell').removeClass('activeCell');
     }
 
-    function myHelper( event ) {return '<div id="draggableHelper" class="piece"></div>';}
+    function myHelper( event ) {
+      if (turn == "black") {
+        return '<div id="draggableHelper" class="piece" style="background: #c31b3b" ></div>';
+      }
+      else
+        return '<div id="draggableHelper" class="piece" style="background: #787a7d" ></div>';
+
+    }
 
     function reset(){
       MovesMap = new Object();

@@ -53,3 +53,7 @@
     opacity:1;  
     animation: flickerAnimationtwo 3s infinite;
 }
+
+.voteCount{
+	margin-left: 150px;
+}

@@ -35,7 +35,7 @@ $(document).ready(function(){
     }
     sortable.sort(function(a, b) {return b[1] - a[1]})
     for(var i = 0; i < sortable.length; i++){
-          $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+sortable[i][1]+"</span></div></a>");
+          $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up' style='font-size: 20px;'></i>   " + sortable[i][1]+"</span></div></a>");
     }
   });
 
