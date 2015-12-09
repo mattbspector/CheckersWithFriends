@@ -116,11 +116,8 @@ $(document).ready(function(){
            jumpedpiece.removeClass("currentTurn");
            jumpedpiece.addClass(notCTurn);
            jumpedCol.append(jumpedpiece);           
-           jumpedpiece.addClass("animate-flickertwo");
+           jumpedpiece.addClass("animate-flickerjumped");
       }
-
-      // $('.piece.'+startingColor).draggable('disable');
-
 	});
 
 	$(".votingMain").on('mouseout', '.votingLink', function(){

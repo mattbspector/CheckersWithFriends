@@ -45,6 +45,11 @@
   50%  { opacity:0; }
   100% { opacity:1; }
 }
+@keyframes flickerAnimationjumped {
+  0%   { opacity:0.6; }
+  50%  { opacity:0; }
+  100% { opacity:0.6; }
+}
 .animate-flicker {
     opacity:0;  
     animation: flickerAnimation 2s infinite;
@@ -52,4 +57,8 @@
 .animate-flickertwo {
     opacity:1;  
     animation: flickerAnimationtwo 2s infinite;
+}
+.animate-flickerjumped{
+    opacity:0.6;  
+    animation: flickerAnimationjumped 2s infinite;
 }

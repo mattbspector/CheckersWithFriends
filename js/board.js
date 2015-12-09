@@ -437,7 +437,7 @@ $(window).ready(function() {
         });
         pubnub.publish({
             channel: 'general_channel',        
-            message: {"board":"0000000000000000000000000000020400000000000000000000000000000000","turn":"black", "moves":{"black" : [], "red" : []}},
+            message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
             callback : function(m){}
         });
     }
