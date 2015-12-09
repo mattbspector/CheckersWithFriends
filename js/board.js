@@ -24,6 +24,7 @@ $(window).ready(function() {
      channel: 'general_channel',
      callback: function(m){
          boardString = JSON.stringify(m[0][0]);
+
          if(m[0][0]["turn"] == "black"){
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
@@ -48,10 +49,6 @@ $(window).ready(function() {
      reverse: false // false is the default
     });
     //NOT SURE IF IT DOES ANYTHING
-
-
-
-      
 
      
     });
@@ -261,7 +258,6 @@ $(window).ready(function() {
           boardJson["moves"]["red"].push(vote_obj);
         }
 
-        console.log(boardJson);
         //Publish boardJSON
         var pubnub = PUBNUB({
             subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
@@ -278,7 +274,33 @@ $(window).ready(function() {
              channel: 'general_channel',
              callback: function(m){
                  boardString = JSON.stringify(m[0][0]);
-                 console.log(m[0][0]['turn']);
+                 var boardJson = JSON.parse(boardString);
+                var board = boardJson["board"];
+                var countPieces = 0;
+                for (var i = board.length - 1; i >= 0; i--) {
+                    if(board[i] != "0"){
+                      countPieces++;
+                    }
+                };
+                if (countPieces == 1) {
+                  //Game is over there is only 1 piece left!!
+                  $("#myModal").modal("show");
+                  MovesMap = new Object();
+                  //Publish boardJSON
+                  var pubnub = PUBNUB({
+                      subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+                      publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+                  });
+                  pubnub.publish({
+                      channel: 'general_channel',        
+                      message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
+                      callback : function(m){
+                        console.log(m);
+                      }
+                  });
+                };
+
+
                  MovesMap = new Object();
                  if(m[0][0]['turn'] == "black"){
                   for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
@@ -413,7 +435,7 @@ $(window).ready(function() {
         });
         pubnub.publish({
             channel: 'general_channel',        
-            message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
+            message: {"board":"0000000000000000000000000000020400000000000000000000000000000000","turn":"black", "moves":{"black" : [], "red" : []}},
             callback : function(m){}
         });
     }

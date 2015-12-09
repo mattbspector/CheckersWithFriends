@@ -1,0 +1,101 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+.trophy_wrapper {
+  margin: 63px auto;
+  width: 300px;
+  min-height: 474px;
+  position: relative;
+  z-index: 1;
+}
+.trophy_wrapper .trophy_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  overflow: hidden;
+  height: 94.93%;
+  text-align: center;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+  padding-top: 36px;
+}
+.trophy_wrapper .trophy_container :nth-child(1) {
+  -moz-animation: slideIn 1s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 1s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 1s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+.trophy_wrapper .trophy_container :nth-child(2) {
+  -moz-animation: slideIn 2s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 2s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 2s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+.trophy_wrapper .trophy_container :nth-child(3) {
+  -moz-animation: slideIn 3s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 3s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 3s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+.trophy_wrapper .trophy_container :nth-child(4) {
+  -moz-animation: slideIn 4s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 4s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 4s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+.trophy_wrapper .trophy {
+  margin-bottom: 24px;
+}
+.trophy_wrapper h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #1a1a1a;
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+.trophy_wrapper .score {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #0288d1;
+  font-size: 12px;
+  display: block;
+  letter-spacing: 1px;
+  margin-bottom: 17px;
+}
+.trophy_wrapper p {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #999999;
+  font-size: 15px;
+  padding: 0 15%;
+  line-height: 24px;
+}
+@keyframes slideIn {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-filter: blur(15px);
+    filter: blur(15px);
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+  }
+}
+@-webkit-keyframes slideIn {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    -webkit-filter: blur(15px);
+    filter: blur(15px);
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+  }
+}
+
+
