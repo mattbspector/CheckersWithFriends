@@ -19,7 +19,7 @@ h1 {
 
 .checkerBoard {
   border-collapse: collapse;
-  border: thin black solid;
+  border: 2px black solid;
   float: left;
   margin: 0px 0px 0px 25vw;
   width: 50vw;
