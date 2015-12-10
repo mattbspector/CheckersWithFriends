@@ -9,11 +9,13 @@
   display: block;
 }
 .countdown div {
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 100;
   display: inline;
 }
 .countdown div span {
   font-weight: 50;
   font-size: 2rem;
+  padding-bottom: 50px;
+
 }

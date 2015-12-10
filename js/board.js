@@ -30,6 +30,7 @@ $(window).ready(function() {
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
                 $("#turn_display").html("It is Grey's Turn");
+                $("#turn_display").css('color',"#787a7d");
                 $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
 
@@ -41,7 +42,7 @@ $(window).ready(function() {
                 $("#turn_display").html("It is Red's Turn");
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
-
+                $("#turn_display").css('color',"#c31b3b");
           }
           //Setup the board and choose the starting color
       },
@@ -359,7 +360,6 @@ $(window).ready(function() {
                 var boardJson = JSON.parse(boardString);
                 MovesMap = new Object();
                 boardJson['moves'] = {'black' : [], 'red' : []};
-
                 var pubnub = PUBNUB({
                       subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
                       publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
@@ -402,15 +402,16 @@ $(window).ready(function() {
         if (mypiece.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          $("#turn_display").html("Grey's Turn");
+          $("#turn_display").html("It is Grey's Turn");
+          $("#turn_display").css('color',"#787a7d");
           turn = "red";
         }
         else{
           $('.piece.black').draggable('disable');
           $('.piece.red').draggable('enable');
-          $("#turn_display").html("Red's Turn");
+          $("#turn_display").html("It is Red's Turn");
           turn = "black";
-
+          $("#turn_display").css('color',"#c31b3b");
         }
         changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);
       }
@@ -434,8 +435,14 @@ $(window).ready(function() {
       $('.activeCell').removeClass('activeCell');
     }
 
-    function myHelper( event ) {return '<div id="draggableHelper" class="piece"></div>';}
+    function myHelper( event ) {
+      if (turn == "black") {
+        return '<div id="draggableHelper" class="piece" style="background: #c31b3b" ></div>';
+      }
+      else
+        return '<div id="draggableHelper" class="piece" style="background: #787a7d" ></div>';
 
+    }
     function reset(){
       MovesMap = new Object();
         //Publish boardJSON

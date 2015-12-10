@@ -19,7 +19,7 @@ h1 {
 
 .checkerBoard {
   border-collapse: collapse;
-  border: thin black solid;
+  border: 2px black solid;
   float: left;
   margin: 0px 0px 0px 25vw;
   width: 50vw;
@@ -42,9 +42,8 @@ h1 {
 
 .black {background: black;}
 .white{background: white;}
-.activeCell {background: green;}
-.activeCell.hovered {background: blue;}
-
+.activeCell {background: #90C695;}
+.activeCell.hovered {background: #26A65B;}
 .piece {border-radius: 3vw;}
 .piece.black {background: #787a7d; opacity: 0.6}
 .piece.red {background: #c31b3b; opacity: 0.6;}
@@ -62,5 +61,5 @@ h1 {
 
 #draggableHelper {
   opacity: .7;
-  background: green;
+  background: #26A65B;
 }

@@ -45,7 +45,7 @@ $(document).ready(function()
                               }
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+sortable[i][1]+"</span></div></a>");
+                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up' style='font-size: 20px;'></i>    " +sortable[i][1]+"</span></div></a>" );
                               }
                            }
                            else{
@@ -64,7 +64,8 @@ $(document).ready(function()
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+sortable[i][1]+"</span></div></a>");
+                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up' style='font-size: 20px;'></i>    " +sortable[i][1]+"</span></div></a>" );
+
                               }
                                   
                            }     
@@ -108,14 +109,16 @@ $(document).ready(function()
                         if(m["turn"] == "black"){
                             $( ".checkerBoard" ).children().remove();
                             setup('red');
-                            $("#turn_display").html("Grey's Turn");
+                            $("#turn_display").html("It is Grey's Turn");
+                            $("#turn_display").css('color', "#787a7d");
                             $(".piece.black").addClass("currentTurn");
                             $(".piece.red").removeClass("currentTurn");
                         }
                         else{
                             $( ".checkerBoard" ).children().remove();
                             setup('black');
-                            $("#turn_display").html("Red's Turn");
+                            $("#turn_display").html("It is Red's Turn");
+                            $("#turn_display").css('color', "#c31b3b");
                             $(".piece.red").addClass("currentTurn");
                             $(".piece.black").removeClass("currentTurn");
                         }
@@ -137,7 +140,7 @@ $(document).ready(function()
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+sortable[i][1]+"</span></div></a>" )
+                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up style='font-size: 20px;''></i>    " +sortable[i][1]+"</span></div></a>" )
                               }
                            }
                            else{
@@ -156,7 +159,7 @@ $(document).ready(function()
                               sortable.sort(function(a, b) {return b[1] - a[1]})
                               console.log(sortable);
                               for(var i = 0; i < sortable.length; i++){
-                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+sortable[i][1]+"</span></div></a>" )
+                                    $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up' style='font-size: 20px;'></i>    " +sortable[i][1]+"</span></div></a>" )
                               }
                                   
                            }  
