@@ -1,5 +1,6 @@
 var checkerBoard = "";
 var cTurn = "";
+var notCTurn = "";
 $(document).ready(function(){
 
   $(".votingMain").on('click', '.votingLink', function(){
@@ -42,9 +43,11 @@ $(document).ready(function(){
 	$(".votingMain").on('mouseover', '.votingInner', function(){
     if($(".currentTurn").hasClass("black")){
       cTurn = "black";
+      notCTurn = "red";
     }
     else{
       cTurn = "red";
+      notCTurn = "black";
     }
 		checkerBoard = $(".checkerBoard");
 		$(".checkerBoard").children().remove();
@@ -103,17 +106,27 @@ $(document).ready(function(){
       col2.append(mypiece);
       mypiece.addClass("animate-flickertwo");
       piece.addClass("animate-flicker");
-
-      // $('.piece.'+startingColor).draggable('disable');
-
+      if (Math.abs(startspace[1]-endspace[1]) == 2 || Math.abs(startspace[0]-endspace[0]) == 2){
+           var middleRow = (parseInt(startspace[1]) + parseInt(endspace[1]))/2;
+           var middleCol = (parseInt(startspace[0]) + parseInt(endspace[0]))/2;
+           var jumpedCol = $("td[row='"+ middleRow+"']td[col='"+ middleCol+"']");
+           var jumpedpiece = mypiece.clone();
+           jumpedpiece.removeClass(cTurn);
+           jumpedpiece.removeClass("currentTurn");
+           jumpedpiece.addClass(notCTurn);
+           jumpedCol.append(jumpedpiece);           
+           jumpedpiece.addClass("animate-flickerjumped");
+      }
 	});
 
 	$(".votingMain").on('mouseout', '.votingLink', function(){
     if($(".currentTurn").hasClass("black")){
       cTurn = "black";
+      notCTurn = "red";
     }
     else{
       cTurn = "red";
+      notCTurn = "black";
     }
 		checkerBoard = $(".checkerBoard");
 		$(".checkerBoard").children().remove();

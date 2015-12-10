@@ -8,7 +8,6 @@
     height: 93vh;
     background-color: #FFF;
     font-family: 'Basic', sans-serif;
-
 }
 .votingInner{
 	/* border: 2px #333 solid; */
@@ -26,8 +25,7 @@
 	color: #333;
 	width: 100%;
 	height: 50px;
-		border-bottom: 1px solid lightgray;
-
+	border-bottom: 1px solid lightgray;
 
 }
 .votingLink:hover{
@@ -37,25 +35,36 @@
 .boardInner{
 	display: none;
 }
-@keyframes flickerAnimation { /* flame pulses */
+
+.voteCount{
+	margin-left: 150px;
+}
+
+@keyframes flickerAnimation {
   0%   { opacity:0; }
   50%  { opacity:1; }
   100% { opacity:0; }
 }
-@keyframes flickerAnimationtwo { /* flame pulses */
+@keyframes flickerAnimationtwo {
   0%   { opacity:1; }
   50%  { opacity:0; }
   100% { opacity:1; }
 }
+
+@keyframes flickerAnimationjumped {
+  0%   { opacity:0.6; }
+  50%  { opacity:0; }
+  100% { opacity:0.6; }
+}
 .animate-flicker {
     opacity:0;  
-    animation: flickerAnimation 3s infinite;
+    animation: flickerAnimation 2s infinite;
 }
 .animate-flickertwo {
     opacity:1;  
-    animation: flickerAnimationtwo 3s infinite;
+    animation: flickerAnimationtwo 2s infinite;
 }
-
-.voteCount{
-	margin-left: 150px;
+.animate-flickerjumped{
+    opacity:0.6;  
+    animation: flickerAnimationjumped 2s infinite;
 }

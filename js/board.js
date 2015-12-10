@@ -34,7 +34,6 @@ $(window).ready(function() {
                 $("#turn_display").css("display", "none");
                 $(".piece.black").addClass("currentTurn");
 
-
           }
           else{
                 //NotTurnButTeam
@@ -44,8 +43,6 @@ $(window).ready(function() {
                 $("#turn_display").css("display", "none");
                 $(".piece.red").addClass("currentTurn");
                 $("#turn_display").css('color',"#c31b3b");
-
-
           }
           //Setup the board and choose the starting color
       },
@@ -241,9 +238,11 @@ $(window).ready(function() {
             }
         }
 
+        var middleRow = -1;
+        var middleCol = -1;
         if (Math.abs(oldrow-newrow) == 2 || Math.abs(oldcol-newcol) == 2){
-            var middleRow = (oldrow + newrow)/2;
-            var middleCol = (oldcol + newcol)/2;
+            middleRow = (oldrow + newrow)/2;
+            middleCol = (oldcol + newcol)/2;
             var middleIndex = (8 * middleRow) + middleCol;
             myNewBoard = myNewBoard.replaceAt(middleIndex, '0');
         }
@@ -305,8 +304,12 @@ $(window).ready(function() {
                 };
 
 
+
                  MovesMap = new Object();
                  if(m[0][0]['turn'] == "black"){
+                  if(m[0][0]["moves"]["black"].length == 0){
+                    return false;
+                  }
                   for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
                                     if(!(m[0][0]["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
                                           MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["black"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["black"][i]['formatted_move_end']};
@@ -323,6 +326,9 @@ $(window).ready(function() {
                     myNewBoard =  sortable[0][0];
                  }
                  else{
+                  if(m[0][0]["moves"]["red"].length == 0){
+                    return false;
+                  }
                   for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
                                     if(!(m[0][0]["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
                                           MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["red"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["red"][i]['formatted_move_end']};
@@ -398,7 +404,6 @@ $(window).ready(function() {
           $('.piece.black').draggable('enable');
           $("#turn_display").html("It is Grey's Turn");
           $("#turn_display").css('color',"#787a7d");
-
           turn = "red";
         }
         else{
@@ -438,7 +443,6 @@ $(window).ready(function() {
         return '<div id="draggableHelper" class="piece" style="background: #787a7d" ></div>';
 
     }
-
     function reset(){
       MovesMap = new Object();
         //Publish boardJSON
@@ -448,7 +452,7 @@ $(window).ready(function() {
         });
         pubnub.publish({
             channel: 'general_channel',        
-            message: {"board":"0000000000000000000000000000020400000000000000000000000000000000","turn":"black", "moves":{"black" : [], "red" : []}},
+            message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
             callback : function(m){}
         });
     }
