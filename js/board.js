@@ -29,9 +29,10 @@ $(window).ready(function() {
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
                 setup('red');
-                $("#turn_display").html("It is Grey's Turn");
-                $("#turn_display").css('color',"#787a7d");
-                $("#turn_display").css("display", "none");
+                 $('header').text("It is Grey's Turn");
+                 $('header').css("background-color", "#787a7d");
+                 $('header').css("font-size", "50px");
+                 $('header').css("color", "white");
                 $(".piece.black").addClass("currentTurn");
 
           }
@@ -39,10 +40,11 @@ $(window).ready(function() {
                 //NotTurnButTeam
                 $( ".checkerBoard" ).children().remove();
                 setup('black');
-                $("#turn_display").html("It is Red's Turn");
-                $("#turn_display").css("display", "none");
+                $('header').text("It is Red's Turn");
+                $('header').css("background-color", "#c31b3b");
+                $('header').css("font-size", "50px");
+                $('header').css("color", "white");
                 $(".piece.red").addClass("currentTurn");
-                $("#turn_display").css('color',"#c31b3b");
           }
           //Setup the board and choose the starting color
       },
@@ -402,16 +404,20 @@ $(window).ready(function() {
         if (mypiece.hasClass('red')){
           $('.piece.red').draggable('disable');
           $('.piece.black').draggable('enable');
-          $("#turn_display").html("It is Grey's Turn");
-          $("#turn_display").css('color',"#787a7d");
+          $('header').text("It is Grey's Turn");
+          $('header').css("background-color", "#787a7d");
+          $('header').css("font-size", "50px");
+          $('header').css("color", "white");
           turn = "red";
         }
         else{
           $('.piece.black').draggable('disable');
           $('.piece.red').draggable('enable');
-          $("#turn_display").html("It is Red's Turn");
           turn = "black";
-          $("#turn_display").css('color',"#c31b3b");
+          $('header').text("It is Red's Turn");
+          $('header').css("background-color", "#c31b3b");
+          $('header').css("font-size", "50px");
+          $('header').css("color", "white");
         }
         changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);
       }

@@ -7,25 +7,23 @@ $(document).ready(function()
       $(".mybtn").click(function()
       {
       		$(".overlay-main").slideUp(1000);
-      		if($(this).hasClass("btn-danger"))
+                  if($(this).hasClass("btn-danger"))
                   {
-      				team = "red";
-      				$('.piece.black').draggable('disable');
-      				$('header').text("You are on the Red Team");
-      				$('header').css("background-color", "#c31b3b");
-      				$('header').css("font-size", "50px");
-      				$('header').css("color", "white");
-      		}
+                              team = "red";
+                              $('.piece.black').draggable('disable');
+                              $('#turn_display').text("You are on the Red Team");
+                              $('#turn_display').css("color", "#c31b3b");
+
+                  }
                   else
                   {
-      				team = "black";
-      				$('.piece.red').draggable('disable');
-      				$('header').text("You are on the Grey Team");
-      				$('header').css("background-color", "#787a7d");
-      				$('header').css("font-size", "50px");
-      				$('header').css("color", "white");
-      		}
-      		$("#turn_display").css("display", "");
+                              team = "black";
+                              $('.piece.red').draggable('disable');
+                              $('#turn_display').text("You are on the Grey Team");
+                              $('#turn_display').css("color", "#787a7d");
+
+
+                  }
                    history = pubnub.history({
                        channel: 'general_channel',
                        callback: function(m){
@@ -109,16 +107,16 @@ $(document).ready(function()
                         if(m["turn"] == "black"){
                             $( ".checkerBoard" ).children().remove();
                             setup('red');
-                            $("#turn_display").html("It is Grey's Turn");
-                            $("#turn_display").css('color', "#787a7d");
+                            $("header").html("It is Grey's Turn");
+                            $("header").css('background-color', "#787a7d");
                             $(".piece.black").addClass("currentTurn");
                             $(".piece.red").removeClass("currentTurn");
                         }
                         else{
                             $( ".checkerBoard" ).children().remove();
                             setup('black');
-                            $("#turn_display").html("It is Red's Turn");
-                            $("#turn_display").css('color', "#c31b3b");
+                            $("header").html("It is Red's Turn");
+                            $("header").css('background-color', "#c31b3b");
                             $(".piece.red").addClass("currentTurn");
                             $(".piece.black").removeClass("currentTurn");
                         }
