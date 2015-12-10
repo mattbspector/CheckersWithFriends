@@ -303,8 +303,12 @@ $(window).ready(function() {
                 };
 
 
+
                  MovesMap = new Object();
                  if(m[0][0]['turn'] == "black"){
+                  if(m[0][0]["moves"]["black"].length == 0){
+                    return false;
+                  }
                   for(var i = 0; i < m[0][0]["moves"]["black"].length; i++){
                                     if(!(m[0][0]["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
                                           MovesMap[m[0][0]["moves"]["black"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["black"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["black"][i]['formatted_move_end']};
@@ -321,6 +325,9 @@ $(window).ready(function() {
                     myNewBoard =  sortable[0][0];
                  }
                  else{
+                  if(m[0][0]["moves"]["red"].length == 0){
+                    return false;
+                  }
                   for(var i = 0; i < m[0][0]["moves"]["red"].length; i++){
                                     if(!(m[0][0]["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
                                           MovesMap[m[0][0]["moves"]["red"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m[0][0]["moves"]["red"][i]['formatted_move_start'], 'end_move': m[0][0]["moves"]["red"][i]['formatted_move_end']};
@@ -352,6 +359,7 @@ $(window).ready(function() {
                 var boardJson = JSON.parse(boardString);
                 MovesMap = new Object();
                 boardJson['moves'] = {'black' : [], 'red' : []};
+
                 var pubnub = PUBNUB({
                       subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
                       publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
