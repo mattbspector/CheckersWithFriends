@@ -31,7 +31,6 @@ $(window).ready(function() {
                 setup('red');
                  $('header').text("It is Grey's Turn");
                  $('header').css("background-color", "#787a7d");
-                 $('header').css("font-size", "50px");
                  $('header').css("color", "white");
                 $(".piece.black").addClass("currentTurn");
 
@@ -42,7 +41,6 @@ $(window).ready(function() {
                 setup('black');
                 $('header').text("It is Red's Turn");
                 $('header').css("background-color", "#c31b3b");
-                $('header').css("font-size", "50px");
                 $('header').css("color", "white");
                 $(".piece.red").addClass("currentTurn");
           }
@@ -406,7 +404,6 @@ $(window).ready(function() {
           $('.piece.black').draggable('enable');
           $('header').text("It is Grey's Turn");
           $('header').css("background-color", "#787a7d");
-          $('header').css("font-size", "50px");
           $('header').css("color", "white");
           turn = "red";
         }
@@ -416,7 +413,6 @@ $(window).ready(function() {
           turn = "black";
           $('header').text("It is Red's Turn");
           $('header').css("background-color", "#c31b3b");
-          $('header').css("font-size", "50px");
           $('header').css("color", "white");
         }
         changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);

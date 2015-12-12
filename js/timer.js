@@ -37,7 +37,7 @@ $(function() {
 			    
 			    	$secs.text( format(seconds) );
 			   }
-  			}, 10);  
+  			}, 100);  
     	},
    		count: 1,
    		reverse: false // false is the default

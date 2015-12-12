@@ -1,11 +1,11 @@
 .votingMain{
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 5%;
     overflow-x: hidden;
     overflow-y: scroll; 
     width: 25%;
-    height: 93vh;
+    height: 95%;
     background-color: #FFF;
     font-family: 'Basic', sans-serif;
 }
