@@ -1,3 +1,4 @@
+
 var MovesMap = new Object();
 var image_int = Math.floor((Math.random() * 12) + 1);
 
@@ -80,13 +81,30 @@ $(document).ready(function()
                         var boardJson = JSON.parse(boardString);
                         var board = boardJson["board"];
                         var countPieces = 0;
+                        var countRed = 0;
+                        var countBlack = 0;
                         for (var i = board.length - 1; i >= 0; i--) {
                             if(board[i] != "0"){
                               countPieces++;
                             }
+                            if (board[i] == "2" || board[i] == "4") {
+                              countBlack++;
+                            };
+                            if (board[i] == "1" || board[i] == "3") {
+                              countRed++;
+                            };
                         };
                         if (countPieces == 1) {
                           //Game is over there is only 1 piece left!!
+                          if (countRed > 0) {
+                            console.log("Red wins");
+                            $("#winner").append('Red Team Wins!');
+                          };
+                          console.log("countBlack is " + countBlack);
+                          if (countBlack > 0) {
+                            console.log("black wins");
+                            $("#winner").append('Black Team Wins!');
+                          };
                           $("#myModal").modal("show");
                           MovesMap = new Object();
                           //Publish boardJSON
