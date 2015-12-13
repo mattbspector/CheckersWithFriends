@@ -4,7 +4,6 @@
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: #eee;
   height: 85%;
 }
 
@@ -213,6 +212,7 @@ body {
     right: 2px;
     font-family: 'Basic', sans-serif;
     border: 2px solid black;
+    background: none;
 }
 
 .outterChatBox{
@@ -226,7 +226,6 @@ body {
 
 #presenceBar{
   height: 5%;
-  background: #eee;
   border-bottom: 1px solid black;
 
 

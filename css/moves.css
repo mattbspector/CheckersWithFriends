@@ -6,8 +6,8 @@
     overflow-y: scroll; 
     width: 25%;
     height: 95%;
-    background-color: #FFF;
     font-family: 'Basic', sans-serif;
+    border: 2px solid black;
 }
 .votingInner{
 	/* border: 2px #333 solid; */

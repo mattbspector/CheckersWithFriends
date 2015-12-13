@@ -108,10 +108,13 @@ $(document).ready(function()
                           $("#myModal").modal("show");
                           MovesMap = new Object();
                           //Publish boardJSON
-                          var pubnub = PUBNUB({
+                            pubnub = PUBNUB({
                               subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-                              publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
-                          });
+                              publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+                              heartbeat: 31,
+                              heartbeat_interval: 30  
+                            });
+
                           pubnub.publish({
                               channel: 'general_channel',        
                               message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
@@ -230,7 +233,6 @@ $(document).ready(function()
                               bar.innerHTML =  "There are " + m["occupancy"] + " memebers on your team";
                               bar.className = "logo smallest";
                               bar.appendChild(icon);
-
                         },
                         message: function(m){
                               // <div class="chat">

@@ -15,8 +15,11 @@ var myNewBoard = "";
 $(window).ready(function() {
   pubnub = PUBNUB({
     subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+    heartbeat: 31,
+    heartbeat_interval: 30  
   });
+
   uniqueID = PUBNUB.uuid();
 
     //Query History and set Board String
@@ -198,8 +201,10 @@ $(window).ready(function() {
         //Publish boardJSON
         boardJson['moves'] = {'black' : [], 'red' : []};
         var pubnub = PUBNUB({
-            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+          heartbeat: 31,
+          heartbeat_interval: 30  
         });
         pubnub.publish({
             channel: 'general_channel',        
@@ -262,9 +267,11 @@ $(window).ready(function() {
         }
 
         //Publish boardJSON
-        var pubnub = PUBNUB({
-            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+        var   pubnub = PUBNUB({
+          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+          heartbeat: 31,
+          heartbeat_interval: 30  
         });
         pubnub.publish({
             channel: 'general_channel',        
@@ -279,7 +286,7 @@ $(window).ready(function() {
                  boardString = JSON.stringify(m[0][0]);
                  var boardJson = JSON.parse(boardString);
                 var board = boardJson["board"];
-                
+
 
 
 
@@ -339,9 +346,12 @@ $(window).ready(function() {
                 MovesMap = new Object();
                 boardJson['moves'] = {'black' : [], 'red' : []};
                 var pubnub = PUBNUB({
-                      subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-                      publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
-                  });
+                    subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+                    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+                    heartbeat: 31,
+                    heartbeat_interval: 30  
+                });
+
                   pubnub.publish({
                       channel: 'general_channel',        
                       message: boardJson,
@@ -426,10 +436,13 @@ $(window).ready(function() {
     function reset(){
       MovesMap = new Object();
         //Publish boardJSON
-        var pubnub = PUBNUB({
-            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+        var   pubnub = PUBNUB({
+          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+          heartbeat: 31,
+          heartbeat_interval: 30  
         });
+
         pubnub.publish({
             channel: 'general_channel',        
             message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
