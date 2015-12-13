@@ -32,21 +32,35 @@
 		<div style="overlay"> 
 			<div class="center">
 			  <div class="inner">
-			    <h1 id="i1">Checkers</h1>
+			    <h1 id="i1" class="logo">Checkers</h1>
 			    <br>
-			    <h1 id="i2">With</h1>
+			    <h1 id="i2"  class="logo">With</h1>
 			    <br>
-			    <h1 id="i3">Friends</h1>
+			    <h1 id="i3"  class="logo">Friends</h1>
 			    <br>
 			    <div id="i4">
-			      <h3>made with love by</h3>
-			      <h2>justin platz </br> matt spector </br> john doherty</h2>
-			      <h2 class="main-header">join a team</h2>
+			      <h3>made with <i class="fa fa-heart"></i> by</h3>
+			      <h2>justin platz </br> matt spector </br> john doherty</h2></br></br>
 				  <div class="buttons">
+				  	<button type="button" class="btnn btn-default btn-block" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus. </br> Vivamus sagittis lacus vel augue laoreet rutrum faucibus. </br> Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">view instructions</button>
+					<script>
+						$(document).ready(function(){
+						    $('[data-toggle="popover"]').popover();   
+						});
+						$('body').on('click', function (e) {
+						    //did not click a popover toggle or popover
+						    if ($(e.target).data('toggle') !== 'popover'
+						        && $(e.target).parents('.popover.in').length === 0) { 
+						        $('[data-toggle="popover"]').popover('hide');
+						    }
+						});
+					</script>
+					<h2> or </h2></br>
+				    <h2 class="main-header">join a team</h2>
 					<button type="button" class="mybtn btnn btn-danger btn-block">red team</button>
 					<button type="button" class="mybtn btnn btn-grey btn-block">grey team</button>
-					<h2>or </h2>
-					<button type="button" class="mybtn btnn btn btn-block">view instructions</button>
+
+
 				  </div>
 			    </div>
 			  </div>

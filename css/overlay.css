@@ -6,7 +6,7 @@
 	left: 0;
 	right: 0;
   background: radial-gradient(#fff, #ccc);
-	opacity: .9;
+	opacity: .95;
 }
 .buttons{
 }
@@ -47,7 +47,7 @@ body .overlay{
   height: 2px;
   width: 200%;
   position: absolute;
-  top: 50%;
+  top: 15%;
   left: 60%;
   animation: line-length 1s linear 0.5s forwards;
 }
@@ -65,6 +65,7 @@ body .overlay{
   width: 250px;
   margin: auto;
   line-height: 24px;
+  height: 85%;
 }
 /*---------------------------------------------------*/
 /*text style*/

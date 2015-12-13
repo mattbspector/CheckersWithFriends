@@ -39,7 +39,6 @@ $(function() {
 			    	var minutes = Math.floor((time / 60000) % 60);
 			    	var hours = Math.floor((time / 3600000) % 24);
 			    	var days = Math.floor((time / 86400000));
-			    	console.log(seconds);
 
 			    	$secs.text( format(seconds) );
 			   }
