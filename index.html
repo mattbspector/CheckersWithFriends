@@ -39,10 +39,22 @@
 			    <h1 id="i3"  class="logo">Friends</h1>
 			    <br>
 			    <div id="i4">
-			      <h3>made with <i class="fa fa-heart"></i> by</h3>
+			      <h3 class="logo smaller">made with <i class="fa fa-heart"></i> by</h3>
 			      <h2>justin platz </br> matt spector </br> john doherty</h2></br></br>
 				  <div class="buttons">
-				  	<button type="button" class="btnn btn-default btn-block" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus. </br> Vivamus sagittis lacus vel augue laoreet rutrum faucibus. </br> Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">view instructions</button>
+				  	<button type="button" class="btnn btn-default btn-block logo smaller" data-container="body" data-toggle="popover" data-placement="top" data-html="true" 
+				  	data-content="<span class='logo small'>How To Play:</span></br></br>
+				  	<span class='logo smaller'>
+					Checkers With Friends is the first ever checkers game in which you play along with a team, against another team.
+					</br></br>
+					First you select which team you want to play along with. Then when it is your teams turn, you can suggest moves by dragging and dropping the desired piece. 
+					</br></br>
+					Your move will appear on the left side of the screen along with all the suggested moved by your teammates.
+					</br></br>
+					Team members can view suggested moves by hovering over them and can vote for suggested moves by clicking on them.
+					</br></br>
+					At the end of the 30 second limit, the most highly suggested move is played.
+					</span>">view instructions</button>
 					<script>
 						$(document).ready(function(){
 						    $('[data-toggle="popover"]').popover();   
@@ -54,11 +66,16 @@
 						        $('[data-toggle="popover"]').popover('hide');
 						    }
 						});
+						$(this).popover({
+				            html:true
+				        });
+
+				        
 					</script>
 					<h2> or </h2></br>
 				    <h2 class="main-header">join a team</h2>
-					<button type="button" class="mybtn btnn btn-danger btn-block">red team</button>
-					<button type="button" class="mybtn btnn btn-grey btn-block">grey team</button>
+					<button type="button" class="mybtn btnn btn-danger btn-block logo smaller">red team</button>
+					<button type="button" class="mybtn btnn btn-grey btn-block logo smaller">grey team</button>
 
 
 				  </div>
