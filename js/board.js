@@ -15,8 +15,11 @@ var myNewBoard = "";
 $(window).ready(function() {
   pubnub = PUBNUB({
     subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+    heartbeat: 31,
+    heartbeat_interval: 30  
   });
+
   uniqueID = PUBNUB.uuid();
 
     //Query History and set Board String
@@ -31,7 +34,6 @@ $(window).ready(function() {
                 setup('red');
                  $('header').text("It is Grey's Turn");
                  $('header').css("background-color", "#787a7d");
-                 $('header').css("font-size", "50px");
                  $('header').css("color", "white");
                 $(".piece.black").addClass("currentTurn");
 
@@ -42,7 +44,6 @@ $(window).ready(function() {
                 setup('black');
                 $('header').text("It is Red's Turn");
                 $('header').css("background-color", "#c31b3b");
-                $('header').css("font-size", "50px");
                 $('header').css("color", "white");
                 $(".piece.red").addClass("currentTurn");
           }
@@ -200,8 +201,10 @@ $(window).ready(function() {
         //Publish boardJSON
         boardJson['moves'] = {'black' : [], 'red' : []};
         var pubnub = PUBNUB({
-            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+          heartbeat: 31,
+          heartbeat_interval: 30  
         });
         pubnub.publish({
             channel: 'general_channel',        
@@ -264,9 +267,11 @@ $(window).ready(function() {
         }
 
         //Publish boardJSON
-        var pubnub = PUBNUB({
-            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+        var   pubnub = PUBNUB({
+          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+          heartbeat: 31,
+          heartbeat_interval: 30  
         });
         pubnub.publish({
             channel: 'general_channel',        
@@ -281,29 +286,7 @@ $(window).ready(function() {
                  boardString = JSON.stringify(m[0][0]);
                  var boardJson = JSON.parse(boardString);
                 var board = boardJson["board"];
-                var countPieces = 0;
-                for (var i = board.length - 1; i >= 0; i--) {
-                    if(board[i] != "0"){
-                      countPieces++;
-                    }
-                };
-                if (countPieces == 1) {
-                  //Game is over there is only 1 piece left!!
-                  $("#myModal").modal("show");
-                  MovesMap = new Object();
-                  //Publish boardJSON
-                  var pubnub = PUBNUB({
-                      subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-                      publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
-                  });
-                  pubnub.publish({
-                      channel: 'general_channel',        
-                      message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
-                      callback : function(m){
-                        console.log(m);
-                      }
-                  });
-                };
+
 
 
 
@@ -363,9 +346,12 @@ $(window).ready(function() {
                 MovesMap = new Object();
                 boardJson['moves'] = {'black' : [], 'red' : []};
                 var pubnub = PUBNUB({
-                      subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-                      publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
-                  });
+                    subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+                    publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+                    heartbeat: 31,
+                    heartbeat_interval: 30  
+                });
+
                   pubnub.publish({
                       channel: 'general_channel',        
                       message: boardJson,
@@ -406,7 +392,6 @@ $(window).ready(function() {
           $('.piece.black').draggable('enable');
           $('header').text("It is Grey's Turn");
           $('header').css("background-color", "#787a7d");
-          $('header').css("font-size", "50px");
           $('header').css("color", "white");
           turn = "red";
         }
@@ -416,7 +401,6 @@ $(window).ready(function() {
           turn = "black";
           $('header').text("It is Red's Turn");
           $('header').css("background-color", "#c31b3b");
-          $('header').css("font-size", "50px");
           $('header').css("color", "white");
         }
         changJsonString(mypiece, oldCol, oldRow, newCol, newRow, 0);
@@ -452,10 +436,13 @@ $(window).ready(function() {
     function reset(){
       MovesMap = new Object();
         //Publish boardJSON
-        var pubnub = PUBNUB({
-            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
+        var   pubnub = PUBNUB({
+          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+          heartbeat: 31,
+          heartbeat_interval: 30  
         });
+
         pubnub.publish({
             channel: 'general_channel',        
             message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},

@@ -1,13 +1,13 @@
 .votingMain{
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 5%;
     overflow-x: hidden;
     overflow-y: scroll; 
     width: 25%;
-    height: 93vh;
-    background-color: #FFF;
+    height: 95%;
     font-family: 'Basic', sans-serif;
+    border: 2px solid black;
 }
 .votingInner{
 	/* border: 2px #333 solid; */

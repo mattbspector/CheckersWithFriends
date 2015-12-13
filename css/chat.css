@@ -4,9 +4,7 @@
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: #eee;
-  min-height: 75vh;
-  max-height: 75vh;
+  height: 85%;
 }
 
 #chatbox{
@@ -14,12 +12,11 @@
 }
 .chat .message {
   display: flex;
-  margin: 10px 0 0 10px;
-  min-height: 30px;
-  height: auto;
+  margin: 5px 0 15px 5px;
+  max-height: 5vw;
   text-align: left;
-  padding-bottom: 10px;
-  font-size: 12px;
+  padding-bottom: 5px;
+  /* font-size: 22vw; */
 }
 .chat .message.me img {
   order: 2;
@@ -46,9 +43,10 @@
 .chat .message img {
   display: block;
   order: 1;
-  margin: 0 10px 0 0;
-  height: 30px;
-  width: 30px;
+  margin: 0 10px 0px 0;
+  height: 100%;
+  width: auto;
+  max-height: 30px;
   border-radius: 50%;
   box-sizing: border-box;
   -webkit-touch-callout: none;
@@ -69,6 +67,7 @@
   font-family: 'Basic', sans-serif;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1vw;
 }
 .chat .message div:before {
   position: relative;
@@ -207,26 +206,26 @@ body {
 
 #input{
     width: 100%;
-    height: 13vh;
+    height: 10%;
     overflow: auto;
     position: absolute;
-    right: 1px;
+    right: 2px;
     font-family: 'Basic', sans-serif;
     border: 2px solid black;
+    background: none;
 }
 
 .outterChatBox{
-  position: absolute;
-  right: 0;
-  top: 50px;
-  float: right;
-  width: 25%;
-  height: 85vh;
+    position: absolute;
+    right: 0;
+    top: 5%;
+    float: right;
+    width: 25%;
+    height: 95%;
 }
 
 #presenceBar{
-  height: 5vh;
-  background: #eee;
+  height: 5%;
   border-bottom: 1px solid black;
 
 

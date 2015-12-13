@@ -5,29 +5,156 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(0, 172, 237, 0.9);
+  background: radial-gradient(#fff, #ccc);
+	opacity: .95;
 }
 .buttons{
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 15%;
-	width: 30%;
 }
 
 
 .btnn{
-	font-size: 50px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin-top: 20px !important;
+	font-size: 1em;
+	height: 5vh;
+
 }
 
 .main-header{
-	font-size: 50px;
 	text-align: center;
-	margin-top: 50px;
 }
 
 .btn-grey:hover{
 	background-color: #95a5a6;
+}
+
+
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200);
+/*---------------------------------------------------*/
+
+html {
+  height: 100%;
+}
+
+body .overlay{
+  background: radial-gradient(#fff, #ccc);
+  overflow: hidden;
+  font-family: 'Source Sans Pro';
+  text-transform: uppercase;
+}
+
+.line {
+  background: #999;
+  height: 2px;
+  width: 200%;
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  animation: line-length 1s linear 0.5s forwards;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  animation: move 1s linear forwards;
+}
+
+.inner {
+  width: 250px;
+  margin: auto;
+  line-height: 24px;
+  height: 85%;
+}
+/*---------------------------------------------------*/
+/*text style*/
+
+h1,
+h2,
+h3 .overlay{
+  display: inline-block;
+  font-weight: 100;
+}
+
+h1 .overlay{
+  letter-spacing: 2px;
+  margin: 0;
+  font-size: 48px;
+  text-shadow: 0 0 1px #000;
+}
+
+h2 .overlay{
+  margin: 0;
+  letter-spacing: 2px;
+  margin-left: 8px;
+  color: #78100B;
+  text-shadow: 0 0 2px #78100B;
+}
+
+h3 .overlay{
+  vertical-align: super;
+  margin: 0;
+  font-size: 16px;
+  text-shadow: 0 0 2px #000;
+}
+/*---------------------------------------------------*/
+/*animation*/
+
+#i1 {}
+
+#i2 {
+  transform: scale(-1, 1);
+  opacity: 0;
+  animation: show_text 1s linear 1.7s forwards, spin 0.1s linear 3.5s forwards;
+}
+
+#i3 {
+  opacity: 0;
+  animation: show_text 1s linear 2s forwards;
+}
+
+#i4 {
+  opacity: 0;
+  animation: show_text 1s linear 2.5s forwards;
+}
+/*---------------------------------------------------*/
+/*Keyframes*/
+
+@keyframes move {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: scale(-1, 1);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes line-length {
+  from {
+    width: 200%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+@keyframes show_text {
+  from {
+    z-index: -9999;
+    opacity: 0;
+  }
+  to {
+    z-index: 1;
+    opacity: 1;
+  }
 }

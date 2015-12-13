@@ -1,21 +1,19 @@
 .countdown {
-
+	padding-bottom: 5vw;
 }
 .countdown.style-1 div {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 .countdown.style-1 div span {
   display: block;
 }
 .countdown div {
-  font-size: 4rem;
+  font-size: 3vw;
   font-weight: 100;
   display: inline;
 }
 .countdown div span {
   font-weight: 50;
-  font-size: 2rem;
-  padding-bottom: 50px;
-
+  font-size: 1vw;
 }
