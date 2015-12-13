@@ -6,6 +6,20 @@ $(function() {
     heartbeat_interval: 30  
   });
 
+  function noop(){};
+
+  function doIt(){
+  	ExecutionTime = newExecute;
+  }
+  function ExecutionTime(){
+  	ExecutionTime = noop;
+  	exec();
+  }
+  function newExecute(){
+  	ExecutionTime = noop;
+  	exec();
+  }
+
   history = pubnub.history({
   		channel: "timer",
     	callback: function(m){
@@ -17,15 +31,9 @@ $(function() {
 			var seconds = Math.floor((time / 1000) % 60);
 			if(seconds >= 30){
 				seconds -= 30;
-			}
-      		window.setTimeout(executeFunction, (seconds * 1000));
-			  
+			}			  
 			function format(v) {
 				return (v.toString().length == 1) ? '0' + v : v;
-			}
-			function executeFunction(){
-				exec();
-				setTimeout(executeFunction, 30000);
 			}
 			setInterval(function() {
 
@@ -35,6 +43,12 @@ $(function() {
 			    	var seconds = Math.floor((time / 1000) % 60);
 			    	if (seconds >= 30) {
 			    		seconds -= 30;
+			    	}
+			    	if(seconds != 0){
+			    		doIt();
+			    	}
+			    	if (seconds == 0){
+			    		ExecutionTime();
 			    	}
 			    	var minutes = Math.floor((time / 60000) % 60);
 			    	var hours = Math.floor((time / 3600000) % 24);
