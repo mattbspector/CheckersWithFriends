@@ -29,11 +29,43 @@
 <body style="text-align: center;">
 	<!--Begin Overlay-->
 	<div class="overlay-main">
-		<h2 class="main-header">Choose A Team!</h2>
-		<div class="buttons">
-			<button type="button" class="mybtn btnn btn-danger btn-block">Red Team</button>
+		<div style="overlay"> 
+			<div class="center">
+			  <div class="inner">
+			    <h1 id="i1" class="logo">Checkers</h1>
+			    <br>
+			    <h1 id="i2"  class="logo">With</h1>
+			    <br>
+			    <h1 id="i3"  class="logo">Friends</h1>
+			    <br>
+			    <div id="i4">
+			      <h3>made with <i class="fa fa-heart"></i> by</h3>
+			      <h2>justin platz </br> matt spector </br> john doherty</h2></br></br>
+				  <div class="buttons">
+				  	<button type="button" class="btnn btn-default btn-block" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus. </br> Vivamus sagittis lacus vel augue laoreet rutrum faucibus. </br> Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">view instructions</button>
+					<script>
+						$(document).ready(function(){
+						    $('[data-toggle="popover"]').popover();   
+						});
+						$('body').on('click', function (e) {
+						    //did not click a popover toggle or popover
+						    if ($(e.target).data('toggle') !== 'popover'
+						        && $(e.target).parents('.popover.in').length === 0) { 
+						        $('[data-toggle="popover"]').popover('hide');
+						    }
+						});
+					</script>
+					<h2> or </h2></br>
+				    <h2 class="main-header">join a team</h2>
+					<button type="button" class="mybtn btnn btn-danger btn-block">red team</button>
+					<button type="button" class="mybtn btnn btn-grey btn-block">grey team</button>
 
-			<button type="button" class="mybtn btnn btn-grey btn-block">Grey Team</button>
+
+				  </div>
+			    </div>
+			  </div>
+			  <div class="line"></div>
+			</div>	
 		</div>
 	</div>
 	<!--End Overlay-->
@@ -41,7 +73,7 @@
 	<!--Begin Left Panel-->
 	<div class="votingMain">
 			
-			<div style="border-top: 2px solid black;border-bottom: 2px solid black; height: 100px;background-color: #eee;">
+			<div style="border-top: 2px solid black;border-bottom: 2px solid black; height: 100px;">
 				<!--Begin Turn Display -->
 				<h3 id="turn_display" class="logo smaller"></h3>
 				<!--End Turn Display -->
@@ -57,7 +89,7 @@
 			</div>
 			
 			
-			<h3 style="border-bottom: 1px solid lightgrey;	margin-bottom: 0px; padding-bottom:15px;">Your Team's Votes!</h3>
+			<h3 style="font-size: 1.5vw;border-bottom: 1px solid lightgrey;	margin-bottom: 0px; padding-bottom:15px;">Your Team's Votes!</h3>
 	</div>
 	<!--End Left Panel-->
 
@@ -65,7 +97,7 @@
 	<div class='main'>
 
 		<!--Begin Team Header-->
-		<header class="logo"></header>
+<header class="logo" style="color: rgb(255, 255, 255); background-color: rgb(120, 122, 125); height: 5%; font-size: 4.5vh;"></header>
 		<!--End Team Header-->		
 
 		<div class='victory'></div>
@@ -96,7 +128,7 @@
 	         	<div class="trophy_wrapper">
 				    <div class="trophy_container">
 				        <img src="http://s22.postimg.org/tg9t79o0d/trophy.png" alt="" class="trophy" />
-				        <h1 id="winner" class="logo">Red Team Wins!</h1>
+				        <h1 id="winner" class="logo"></h1>
 				        <h3 class="logo smaller">
 				            Congratulations to the winners! Don't worry, a new game is starting right now!
 				        </h3>
@@ -115,7 +147,9 @@
 	<!-- End Trophy Modal -->
 
 </body>	
-<!-- <button onClick="reset()" style="position: absolute; bottom: 10;"> RESET</button>
- --><!-- <button onClick="exec()" style="position: absolute; top: 5;"> EXEC</button>
- -->
+
+<button onClick="reset()" style="position: absolute; bottom: 10;"> RESET</button>
+ 
+ <!-- <button onClick="exec()" style="position: absolute; top: 5;"> EXEC</button>
+
 </hmtl>

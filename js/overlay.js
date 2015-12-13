@@ -1,3 +1,4 @@
+
 var MovesMap = new Object();
 var image_int = Math.floor((Math.random() * 12) + 1);
 
@@ -80,20 +81,40 @@ $(document).ready(function()
                         var boardJson = JSON.parse(boardString);
                         var board = boardJson["board"];
                         var countPieces = 0;
+                        var countRed = 0;
+                        var countBlack = 0;
                         for (var i = board.length - 1; i >= 0; i--) {
                             if(board[i] != "0"){
                               countPieces++;
                             }
+                            if (board[i] == "2" || board[i] == "4") {
+                              countBlack++;
+                            };
+                            if (board[i] == "1" || board[i] == "3") {
+                              countRed++;
+                            };
                         };
                         if (countPieces == 1) {
                           //Game is over there is only 1 piece left!!
+                          if (countRed > 0) {
+                            console.log("Red wins");
+                            $("#winner").append('Red Team Wins!');
+                          };
+                          console.log("countBlack is " + countBlack);
+                          if (countBlack > 0) {
+                            console.log("black wins");
+                            $("#winner").append('Black Team Wins!');
+                          };
                           $("#myModal").modal("show");
                           MovesMap = new Object();
                           //Publish boardJSON
-                          var pubnub = PUBNUB({
+                            pubnub = PUBNUB({
                               subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-                              publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96'
-                          });
+                              publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+                              heartbeat: 31,
+                              heartbeat_interval: 30  
+                            });
+
                           pubnub.publish({
                               channel: 'general_channel',        
                               message: {"board":"1010003001000303101000300100030310100030010003031010003001000303","turn":"black", "moves":{"black" : [], "red" : []}},
@@ -212,7 +233,6 @@ $(document).ready(function()
                               bar.innerHTML =  "There are " + m["occupancy"] + " memebers on your team";
                               bar.className = "logo smallest";
                               bar.appendChild(icon);
-
                         },
                         message: function(m){
                               // <div class="chat">
