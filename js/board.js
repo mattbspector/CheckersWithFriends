@@ -442,11 +442,11 @@ $(window).ready(function() {
     }
 
     function myHelper( event ) {
-      if (turn == "black") {
-        return '<div id="draggableHelper" class="piece" style="background: #c31b3b" ></div>';
+      if (team == "black") {
+        return '<div id="draggableHelper" class="piece" style="background: #787a7d" ></div>';
       }
       else
-        return '<div id="draggableHelper" class="piece" style="background: #787a7d" ></div>';
+        return '<div id="draggableHelper" class="piece" style="background: #c31b3b" ></div>';
 
     }
     function reset(){

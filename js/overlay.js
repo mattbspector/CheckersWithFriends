@@ -11,17 +11,20 @@ $(document).ready(function()
                   if($(this).hasClass("btn-danger"))
                   {
                               team = "red";
-                              $('.piece.black').draggable('disable');
+                              $('.piece .black').draggable('disable');
                               $('#turn_display').text("You are on the Red Team");
                               $('#turn_display').css("color", "#c31b3b");
+                              $('#draggableHelper').css("background","#c31b3b");
 
                   }
                   else
                   {
                               team = "black";
-                              $('.piece.red').draggable('disable');
+                              $('.piece .red').draggable('disable');
                               $('#turn_display').text("You are on the Grey Team");
                               $('#turn_display').css("color", "#787a7d");
+                              $('#draggableHelper').css("background","#787a7d");
+
 
 
                   }
@@ -260,7 +263,11 @@ $(document).ready(function()
                               icon.className = "fa fa-users";
                               icon.style.marginLeft = "10px";
                               icon.style.fontSize = "16px";
-                              bar.innerHTML =  "There are " + m["occupancy"] + " memebers on your team";
+                              if (team == 'red') {
+                                  bar.innerHTML =  "There are " + m["occupancy"] + " memebers on "+ team + " team";
+                              }else{
+                                bar.innerHTML =  "There are " + m["occupancy"] + " memebers on "+ 'Grey' + " team";
+                              }
                               bar.className = "logo smallest";
                               bar.appendChild(icon);
                         },
