@@ -222,7 +222,7 @@ $(document).ready(function()
                 });
 
                   history = pubnub.history({
-                       channel: team+"_chat",
+                       channel: team+"_chat1",
                        callback: function(m){
                               for (var i = 0; i < m[0].length; i++) {
 
@@ -256,7 +256,7 @@ $(document).ready(function()
                       });
 
                   subscribe = pubnub.subscribe({
-                        channel: team+"_chat",
+                        channel: team+"_chat1",
                         presence: function(m){
                               var bar = document.getElementById('presenceBar');
                               var icon = document.createElement('i');
