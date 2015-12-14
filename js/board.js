@@ -283,13 +283,10 @@ $(window).ready(function() {
       history = pubnub.history({
              channel: 'general_channel',
              callback: function(m){
-                 boardString = JSON.stringify(m[0][0]);
-                 var boardJson = JSON.parse(boardString);
+                boardString = JSON.stringify(m[0][0]);
+                var boardJson = JSON.parse(boardString);
                 var board = boardJson["board"];
-
-
-
-
+                var willBeBlacksTurn = false;
                  MovesMap = new Object();
                  if(m[0][0]['turn'] == "black"){
                   if(m[0][0]["moves"]["black"].length == 0){
@@ -311,6 +308,7 @@ $(window).ready(function() {
                     myNewBoard =  sortable[0][0];
                  }
                  else{
+                  willBeBlacksTurn = true;
                   if(m[0][0]["moves"]["red"].length == 0){
                     return false;
                   }
@@ -361,6 +359,24 @@ $(window).ready(function() {
                   });
                 
                  votingsimulationBoard = myNewBoard;
+                 if (willBeBlacksTurn) {
+                    document.getElementById("turnModalHeader").innerHTML = "Red just played.";
+                    document.getElementById("turnModalHeader").style.color = "#c31b3b";
+
+                    document.getElementById("turnModalHeader1").innerHTML = "It is now Gray's turn.";
+                    document.getElementById("turnModalHeader1").style.color = "#787a7d";
+
+                    $("#myTurnModal").modal();
+                 }
+                 else{
+                    document.getElementById("turnModalHeader").innerHTML = "Grey just played.";
+                    document.getElementById("turnModalHeader").style.color = "#787a7d";
+
+                    document.getElementById("turnModalHeader1").innerHTML = "It is now Red's turn.";
+                    document.getElementById("turnModalHeader1").style.color = "#c31b3b";
+
+                    $("#myTurnModal").modal();
+                 }
 
               },
        count: 1, // 100 is the default

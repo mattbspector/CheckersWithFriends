@@ -158,3 +158,11 @@ h3 .overlay{
     opacity: 1;
   }
 }
+
+.howto{
+
+}
+
+.popover {
+    top: 20% !important;
+}
