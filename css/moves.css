@@ -41,13 +41,9 @@
 }
 .votedforit{
   background-color: #2ecc71;
-  pointer-events: none;
-
 }
 .votedforit:hover{
   background-color: #2ecc71;
-  pointer-events: none;
-
 }
 
 @keyframes flickerAnimation {
