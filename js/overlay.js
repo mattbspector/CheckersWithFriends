@@ -222,7 +222,7 @@ $(document).ready(function()
                 });
 
                   history = pubnub.history({
-                       channel: team+"_chat1",
+                       channel: team+"_chat0",
                        callback: function(m){
                               for (var i = 0; i < m[0].length; i++) {
 
@@ -241,7 +241,7 @@ $(document).ready(function()
 
                                     var innerMessageDiv = document.createElement('div');
                                     var innerMessageDivP = document.createElement('p');
-                                    innerMessageDivP.innerHTML = m[0][i]["text"];
+                                    innerMessageDivP.innerText = m[0][i]["text"];
 
                                     innerMessageDiv.appendChild(innerMessageDivP);
                                     messageDiv.appendChild(innerMessageDiv);
@@ -256,7 +256,7 @@ $(document).ready(function()
                       });
 
                   subscribe = pubnub.subscribe({
-                        channel: team+"_chat1",
+                        channel: team+"_chat0",
                         presence: function(m){
                               var bar = document.getElementById('presenceBar');
                               var icon = document.createElement('i');
@@ -294,7 +294,7 @@ $(document).ready(function()
 
                               var innerMessageDiv = document.createElement('div');
                               var innerMessageDivP = document.createElement('p');
-                              innerMessageDivP.innerHTML = m["text"];
+                              innerMessageDivP.innerText = m["text"];
 
                               innerMessageDiv.appendChild(innerMessageDivP);
                               messageDiv.appendChild(innerMessageDiv);
@@ -322,7 +322,7 @@ function process(e) {
             };
             var jsonString= JSON.stringify(obj);
             pubnub.publish({
-                channel: team+"_chat",        
+                channel: team+"_chat0",        
                 message: obj,
                 callback : function(m){
                   document.getElementById("input").value = "";                   
