@@ -58,7 +58,7 @@ h1 {
 
 #draggableHelper {
   opacity: .7;
-  background: #26A65B;
+  /* background: #26A65B; */
 }
 
 @media (max-width: 600px) {
