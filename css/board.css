@@ -20,7 +20,7 @@ h1 {
   float: left;
   margin: 0px 0px 0px 25vw;
   width: 50vw;
-  height: 49vw;
+  height: 95vh;
 }
 .cell{
   width: 5.5vw;
@@ -59,4 +59,7 @@ h1 {
 #draggableHelper {
   opacity: .7;
   background: #26A65B;
+}
+
+@media (max-width: 600px) {
 }
