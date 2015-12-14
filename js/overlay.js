@@ -11,16 +11,17 @@ $(document).ready(function()
                   if($(this).hasClass("btn-danger"))
                   {
                               team = "red";
-                              $('.piece .black').draggable('disable');
+                              $('.piece.black').draggable('disable');
                               $('#turn_display').text("You are on the Red Team");
                               $('#turn_display').css("color", "#c31b3b");
                               $('#draggableHelper').css("background","#c31b3b");
+
 
                   }
                   else
                   {
                               team = "black";
-                              $('.piece .red').draggable('disable');
+                              $('.piece.red').draggable('disable');
                               $('#turn_display').text("You are on the Grey Team");
                               $('#turn_display').css("color", "#787a7d");
                               $('#draggableHelper').css("background","#787a7d");
