@@ -1,2 +1,3 @@
 # CheckersWithFriends
-Checkers With Friends!
+Team vs Team Checkers
+Play at: http://mattbspector.github.io/CheckersWithFriends/
