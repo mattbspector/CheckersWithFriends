@@ -241,7 +241,7 @@ $(document).ready(function()
 
                                     var innerMessageDiv = document.createElement('div');
                                     var innerMessageDivP = document.createElement('p');
-                                    innerMessageDivP.innerHTML = m[0][i]["text"];
+                                    innerMessageDivP.innerText = m[0][i]["text"];
 
                                     innerMessageDiv.appendChild(innerMessageDivP);
                                     messageDiv.appendChild(innerMessageDiv);
@@ -294,7 +294,7 @@ $(document).ready(function()
 
                               var innerMessageDiv = document.createElement('div');
                               var innerMessageDivP = document.createElement('p');
-                              innerMessageDivP.innerHTML = m["text"];
+                              innerMessageDivP.innerText = m["text"];
 
                               innerMessageDiv.appendChild(innerMessageDivP);
                               messageDiv.appendChild(innerMessageDiv);
@@ -322,7 +322,7 @@ function process(e) {
             };
             var jsonString= JSON.stringify(obj);
             pubnub.publish({
-                channel: team+"_chat",        
+                channel: team+"_chat1",        
                 message: obj,
                 callback : function(m){
                   document.getElementById("input").value = "";                   
