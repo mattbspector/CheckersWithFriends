@@ -20,10 +20,12 @@ $(function() {
   	exec();
   }
 
+
   history = pubnub.history({
   		channel: "timer",
     	callback: function(m){
-        	var now = new Date(m[0]);
+        	console.log(m[0][0]);
+          var now = new Date(m[0][0]);
         	var currentDate = Date.now();
       		var endDate = new Date((now.getFullYear() + 10) + '/01/01');
       		var $secs = $('.seconds');
