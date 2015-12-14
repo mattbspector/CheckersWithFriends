@@ -213,6 +213,9 @@ $(window).ready(function() {
         });
     }
     function proposeNewMove(event, ui){
+
+
+
       var oldrow = parseInt(ui.draggable.parent().attr('row'));
       var oldcol = parseInt(ui.draggable.parent().attr('col'));
       console.log(oldcol + " " + oldrow);
@@ -252,32 +255,42 @@ $(window).ready(function() {
             myNewBoard = myNewBoard.replaceAt(middleIndex, '0');
         }
         
-        var vote_obj = {
-            board_as_long_ass_string: myNewBoard,
-            formatted_move_start: oldcol+","+oldrow,
-            formatted_move_end: newcol+","+newrow,
-            user_uuid: uniqueID
-        };
 
-        if(boardJson["turn"] == "black"){
-          boardJson["moves"]["black"].push(vote_obj);
-        }
-        else{
-          boardJson["moves"]["red"].push(vote_obj);
+        var foundMatch = 0;
+        for(var i = 0; i < movesVotedFor.length; i++){
+          if(movesVotedFor[i] == myNewBoard){
+            foundMatch = 1;
+          }
         }
 
-        //Publish boardJSON
-        var   pubnub = PUBNUB({
-          subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
-          publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
-          heartbeat: 31,
-          heartbeat_interval: 30  
-        });
-        pubnub.publish({
-            channel: 'general_channel',        
-            message: boardJson,
-            callback : function(m){}
-        });
+        if(!foundMatch){
+          var vote_obj = {
+              board_as_long_ass_string: myNewBoard,
+              formatted_move_start: oldcol+","+oldrow,
+              formatted_move_end: newcol+","+newrow,
+              user_uuid: uniqueID
+          };
+
+          if(boardJson["turn"] == "black"){
+            boardJson["moves"]["black"].push(vote_obj);
+          }
+          else{
+            boardJson["moves"]["red"].push(vote_obj);
+          }
+
+          //Publish boardJSON
+          var   pubnub = PUBNUB({
+            subscribe_key: 'sub-c-34be47b2-f776-11e4-b559-0619f8945a4f',
+            publish_key: 'pub-c-f83b8b34-5dbc-4502-ac34-5073f2382d96',
+            heartbeat: 31,
+            heartbeat_interval: 30  
+          });
+          pubnub.publish({
+              channel: 'general_channel',        
+              message: boardJson,
+              callback : function(m){}
+          });
+      }
     }
     exec = function executeMove(){
       history = pubnub.history({
