@@ -1,7 +1,7 @@
 
 var MovesMap = new Object();
 var image_int = Math.floor((Math.random() * 12) + 1);
-
+var movesVotedFor = [];
 $(document).ready(function()
 {
 
@@ -143,13 +143,25 @@ $(document).ready(function()
                         }
                         $(".votingLink").remove();
                         MovesMap = new Object();
-                            if(team == "black"){
+                        movesVotedFor = [];
+                        if(team == "black"){
                               for(var i = 0; i < m["moves"]["black"].length; i++){
+                                    if(m["moves"]["black"][i]["user_uuid"] == uniqueID){
+                                      movesVotedFor.push(m["moves"]["black"][i]["board_as_long_ass_string"]);
+                                    }
                                     if(!(m["moves"]["black"][i]['board_as_long_ass_string'] in MovesMap)){
                                           MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m["moves"]["black"][i]['formatted_move_start'], 'end_move': m["moves"]["black"][i]['formatted_move_end']};
                                     }
                                     else{
-                                          MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']]['count']++;
+                                          var foundIt = 0;
+                                          for(var count = 0; count < movesVotedFor.length; count++){
+                                            if(m["moves"]["black"][i]['board_as_long_ass_string'] == movesVotedFor[count]){
+                                              foundIt++;
+                                            }
+                                          }
+                                          if(foundIt <= 1){
+                                            MovesMap[m["moves"]["black"][i]['board_as_long_ass_string']]['count']++;
+                                          }
                                     }
                               }
                               var sortable = [];
@@ -161,15 +173,26 @@ $(document).ready(function()
                               for(var i = 0; i < sortable.length; i++){
                                     $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up style='font-size: 20px;''></i>    " +sortable[i][1]+"</span></div></a>" )
                               }
-                           }
-                           else{
+                        }
+                        else{
                                 for(var i = 0; i < m["moves"]["red"].length; i++){
+                                  if(m["moves"]["red"][i]["user_uuid"] == uniqueID){
+                                      movesVotedFor.push(m["moves"]["red"][i]["board_as_long_ass_string"]);
+                                    }
                                     if(!(m["moves"]["red"][i]['board_as_long_ass_string'] in MovesMap)){
                                           MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']] = {'count':1, 'start_move': m["moves"]["red"][i]['formatted_move_start'], 'end_move': m["moves"]["red"][i]['formatted_move_end']};
                                     }
                                     else{
-                                          MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']]['count']++;
-                                    }
+                                          var foundIt = 0;
+                                          for(var count = 0; count < movesVotedFor.length; count++){
+                                            if(m["moves"]["red"][i]['board_as_long_ass_string'] == movesVotedFor[count]){
+                                              foundIt++;
+                                            }
+                                          }
+                                          if(foundIt <= 1){
+                                            MovesMap[m["moves"]["red"][i]['board_as_long_ass_string']]['count']++;
+                                          }                                    
+                                  }
                               }
                               var sortable = [];
                               for (var move in MovesMap){
@@ -180,8 +203,8 @@ $(document).ready(function()
                               for(var i = 0; i < sortable.length; i++){
                                     $(".votingMain").append("<a class='votingLink mdl-button mdl-js-button mdl-js-ripple-effect' href='#'><div class='votingInner'>" +sortable[i][2] +" To "+ sortable[i][3]+ "<span class='boardInner'>" +sortable[i][0]+ "</span>"+"<span class ='voteCount'>"+ "<i class='fa fa-thumbs-o-up' style='font-size: 20px;'></i>    " +sortable[i][1]+"</span></div></a>" )
                               }
-                                  
-                           }  
+          
+                        }  
                     },
                     error: function (error) {
                         // Handle error here
