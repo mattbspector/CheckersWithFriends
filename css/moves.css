@@ -39,6 +39,16 @@
 .voteCount{
 	margin-left: 150px;
 }
+.votedforit{
+  background-color: #2ecc71;
+  pointer-events: none;
+
+}
+.votedforit:hover{
+  background-color: #2ecc71;
+  pointer-events: none;
+
+}
 
 @keyframes flickerAnimation {
   0%   { opacity:0; }
@@ -68,3 +78,5 @@
     opacity:0.6;  
     animation: flickerAnimationjumped 2s infinite;
 }
+
+
